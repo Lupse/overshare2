@@ -1,23 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <!-- Background gradient -->
     <item>
-        <shape android:shape="rectangle">
-            <gradient
-                android:startColor="#151515"
-                android:endColor="#2D2B2B"
-                android:angle="15"/>
-        </shape>
+        <bitmap android:gravity="fill" android:src="@drawable/background"/>
     </item>
-
-    <!-- Logo image with transparent background -->
     <item>
-        <bitmap
-            android:gravity="center"
-            android:src="@drawable/ovs_launcher"
-            android:tileMode="disabled"
-            android:antialias="true"
-            android:filter="true"/>
+        <bitmap android:gravity="center" android:src="@drawable/splash"/>
     </item>
-
 </layer-list>
