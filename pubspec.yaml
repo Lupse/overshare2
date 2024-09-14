@@ -10,6 +10,8 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_native_splash: ^2.4.1
+  google_fonts: ^6.2.1
+  intl_phone_number_input: ^0.7.4
 
 dev_dependencies:
   flutter_test:
@@ -20,3 +22,8 @@ flutter:
   uses-material-design: true
   assets:
     - "assets/logo.png"
+    - "assets/signupsuccess.png"
+    - "assets/minilogo.png"
+    - "assets/landing/landingbg.png"
+    - "assets/landing/asset1.png"
+    - "assets/login/asset1.png"
