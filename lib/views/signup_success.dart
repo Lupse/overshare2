@@ -11,15 +11,34 @@ class SignupSuccess extends StatefulWidget {
 }
 
 class SignupSuccessState extends State<SignupSuccess> {
+  int _counter = 3;
+  Timer? _timer;
+
   @override
   void initState() {
     super.initState();
-    // Set a timer to navigate to the Login page after 5 seconds
-    Timer(const Duration(seconds: 3), () {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => const LoginPage()),
-      );
+    countdown();
+  }
+
+  void countdown() {
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (_counter > 0) {
+        setState(() {
+          _counter--;
+        });
+      } else {
+        timer.cancel(); // Cancel timer when counter reaches 0
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const LoginPage()),
+        );
+      }
     });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel(); // Ensure the timer is canceled if the widget is disposed
+    super.dispose();
   }
 
   @override
@@ -64,7 +83,7 @@ class SignupSuccessState extends State<SignupSuccess> {
             Padding(
               padding: const EdgeInsets.only(top: 60.0, left: 50, right: 50),
               child: Text(
-                "Automatically directed to Login in 3 seconds",
+                "Automatically directed to Login in $_counter seconds",
                 textAlign: TextAlign.center,
                 style: GoogleFonts.josefinSans(
                   textStyle: const TextStyle(
