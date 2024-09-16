@@ -4,7 +4,6 @@ import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/instance_manager.dart';
 import 'package:overshare2/firebase_options.dart';
 import 'package:overshare2/repositories/authentication/authentication_repository.dart';
-import 'package:overshare2/views/landing_page.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,7 +21,7 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       // initialRoute: '/',
       // routes: {'/': (context) => const LandingPage()},
-      home: CircularProgressIndicator(),
+      home: Center(child: CircularProgressIndicator()),
     );
   }
 }

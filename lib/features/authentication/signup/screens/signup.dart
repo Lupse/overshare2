@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:overshare2/features/authentication/signup/controllers/signup_controller.dart';
+import 'package:overshare2/features/authentication/signup/models/signup_model.dart';
 import 'package:overshare2/properties/appbars.dart';
 import 'package:overshare2/properties/button.dart';
 import 'package:overshare2/properties/phonetextfield.dart';
@@ -68,6 +69,19 @@ class Signup extends StatelessWidget {
                       width: 388,
                       height: 61,
                       child: MyTextField(
+                        myController: signUpController.usernameController,
+                        text: 'Username',
+                        hide: false,
+                      )),
+                ),
+
+                // Email Textfield
+                Padding(
+                  padding: const EdgeInsets.only(top: 20.0),
+                  child: SizedBox(
+                      width: 388,
+                      height: 61,
+                      child: MyTextField(
                         myController: signUpController.emailController,
                         text: 'Email',
                         hide: false,
@@ -118,7 +132,22 @@ class Signup extends StatelessWidget {
                           text: 'Sign Up',
                           onPressed: () {
                             if (formKey.currentState!.validate()) {
-                              SignupController.instance.signUpUser(
+                              //signup data
+                              final user = SignupModel(
+                                  username: signUpController
+                                      .usernameController.text
+                                      .trim(),
+                                  phone: signUpController.phoneController.text
+                                      .trim(),
+                                  email: signUpController.emailController.text
+                                      .trim(),
+                                  password: signUpController
+                                      .passwordController.text
+                                      .trim());
+                              signUpController.signupUserData(user);
+
+                              //signup auth
+                              SignupController.instance.signupUserAuth(
                                   signUpController.emailController.text.trim(),
                                   signUpController.passwordController.text
                                       .trim());
