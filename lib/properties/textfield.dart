@@ -4,8 +4,10 @@ import 'package:google_fonts/google_fonts.dart';
 class MyTextField extends StatelessWidget {
   final String text;
   final bool hide;
-
-  const MyTextField({super.key, required this.text, required this.hide});
+  final TextEditingController? myController;
+  final FocusNode? myFocusNode;
+  const MyTextField(
+      {super.key, required this.text, required this.hide, this.myController, this.myFocusNode});
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +15,8 @@ class MyTextField extends StatelessWidget {
       width: 388,
       height: 61,
       child: TextField(
+        focusNode: myFocusNode,
+        controller: myController,
         cursorColor: const Color.fromARGB(255, 69, 69, 69),
         style: const TextStyle(color: Colors.white),
         obscureText: hide,

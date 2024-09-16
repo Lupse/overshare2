@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:overshare2/views/login.dart';
+import 'package:overshare2/features/authentication/login/screens/login.dart';
+
+//Expanded cannot be used inside a Stack.
+// You should use Expanded only within a Column, Row or Flex
+
+// First Rule: use Expanded only within a column, row or flex.
+// Second Rule: Parent column that have expanded child column must be wrapped with expanded as well
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
@@ -17,7 +23,7 @@ class LandingPage extends StatelessWidget {
             Expanded(child: Container())
           ],
         ),
-        Expanded(
+        Positioned.fill(
             child: Container(
           decoration: const BoxDecoration(
               color: Color.fromARGB(255, 207, 81, 2),
@@ -47,14 +53,13 @@ class LandingPage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 32.0),
                     child: Text(
-                      "Find the easiest and most simple way to count all your problem",
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.josefinSans(
-                          textStyle: const TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                      )),
-                    ),
+                        "Find the easiest and most simple way to count all your problem",
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.josefinSans(
+                            textStyle: const TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                        ))),
                   ),
                   const Image(image: AssetImage('assets/landing/asset1.png')),
                   Padding(

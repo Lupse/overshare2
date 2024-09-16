@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:get/instance_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:overshare2/features/authentication/login/controllers/login_controller.dart';
 import 'package:overshare2/properties/appbars.dart';
 import 'package:overshare2/properties/button.dart';
 import 'package:overshare2/properties/textfield.dart';
-import 'package:overshare2/views/signup.dart';
+import 'package:overshare2/features/authentication/signup/screens/signup.dart';
+
+//sizedbox dihilangkan karna tidak bisa melakukan input email maupun password 
+//tolong dibantuu
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final formKey = GlobalKey<FormState>();
+    final loginController = Get.put(LoginController());
+
     return Scaffold(
       appBar: const PreferredSize(
         preferredSize: Size(double.infinity, 60),
@@ -18,12 +26,11 @@ class LoginPage extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        child: SizedBox(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height - 75,
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            decoration: const BoxDecoration(color: Color(0xFF151515)),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          decoration: const BoxDecoration(color: Color(0xFF151515)),
+          child: Form(
+            key: formKey,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -64,26 +71,30 @@ class LoginPage extends StatelessWidget {
                 ),
 
                 // Email Textfield
-                const Padding(
-                  padding: EdgeInsets.only(top: 20.0),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20.0),
                   child: SizedBox(
                       width: 388,
                       height: 61,
                       child: MyTextField(
                         text: 'Email',
                         hide: false,
+                        myController: loginController.emailController,
+                        myFocusNode: loginController.emailFocusNode,
                       )),
                 ),
 
                 // Password Textfield
-                const Padding(
-                  padding: EdgeInsets.only(top: 20.0),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20.0),
                   child: SizedBox(
                       width: 388,
                       height: 61,
                       child: MyTextField(
                         text: 'Password',
                         hide: true,
+                        myController: loginController.passwordController,
+                        myFocusNode: loginController.passwordFocusNode,
                       )),
                 ),
 
@@ -93,7 +104,15 @@ class LoginPage extends StatelessWidget {
                   child: SizedBox(
                     width: 388,
                     height: 43,
-                    child: MyButton(text: 'Login', onPressed: () {}),
+                    child: MyButton(
+                        text: 'Login',
+                        onPressed: () {
+                          if (formKey.currentState!.validate()) {
+                            LoginController.instance.loginUser(
+                                loginController.emailController.text.trim(),
+                                loginController.passwordController.text.trim());
+                          }
+                        }),
                   ),
                 ),
 

@@ -1,7 +1,8 @@
 import 'dart:async'; // Import dart:async for Timer
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:overshare2/views/login.dart';
+import 'package:overshare2/features/authentication/login/screens/login.dart';
+import 'package:overshare2/views/homepage.dart';
 
 class SignupSuccess extends StatefulWidget {
   const SignupSuccess({super.key});
@@ -29,7 +30,7 @@ class SignupSuccessState extends State<SignupSuccess> {
       } else {
         timer.cancel(); // Cancel timer when counter reaches 0
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const LoginPage()),
+          MaterialPageRoute(builder: (context) => const Homepage()),
         );
       }
     });
