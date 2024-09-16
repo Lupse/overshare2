@@ -18,10 +18,11 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return const GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
-      routes: {'/': (context) => const LandingPage()},
+      // initialRoute: '/',
+      // routes: {'/': (context) => const LandingPage()},
+      home: CircularProgressIndicator(),
     );
   }
 }

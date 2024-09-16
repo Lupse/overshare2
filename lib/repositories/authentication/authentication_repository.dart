@@ -24,7 +24,7 @@ class AuthenticationRepository extends GetxController {
     //perhatikan bagian else nya
     user == null
         ? Get.offAll(() => const LandingPage())
-        : Get.offAll(() => const LandingPage());
+        : Get.offAll(() => const Homepage());
   }
 
   Future<void> createUserWithEmailAndPassword(
