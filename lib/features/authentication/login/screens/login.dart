@@ -7,7 +7,7 @@ import 'package:overshare2/properties/button.dart';
 import 'package:overshare2/properties/textfield.dart';
 import 'package:overshare2/features/authentication/signup/screens/signup.dart';
 
-//sizedbox dihilangkan karna tidak bisa melakukan input email maupun password 
+//sizedbox dihilangkan karna tidak bisa melakukan input email maupun password
 //tolong dibantuu
 
 class LoginPage extends StatelessWidget {
@@ -19,6 +19,7 @@ class LoginPage extends StatelessWidget {
     final loginController = Get.put(LoginController());
 
     return Scaffold(
+      backgroundColor: const Color(0xFF151515),
       appBar: const PreferredSize(
         preferredSize: Size(double.infinity, 60),
         child: MyAppBar(
@@ -27,6 +28,7 @@ class LoginPage extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Container(
+          width: double.infinity,
           padding: const EdgeInsets.symmetric(horizontal: 20),
           decoration: const BoxDecoration(color: Color(0xFF151515)),
           child: Form(

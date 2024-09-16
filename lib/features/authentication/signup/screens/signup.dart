@@ -18,6 +18,7 @@ class Signup extends StatelessWidget {
     final signUpController = Get.put(SignupController());
 
     return Scaffold(
+      backgroundColor: const Color(0xFF151515),
       appBar: const PreferredSize(
           preferredSize: Size(double.infinity, 60),
           child: MyAppBar(backgroundColor: Color(0xFF151515))),
@@ -25,7 +26,6 @@ class Signup extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           width: 450,
-          height: 765,
           decoration: const BoxDecoration(color: Color(0xFF151515)),
           child: Form(
             key: formKey,
@@ -34,7 +34,7 @@ class Signup extends StatelessWidget {
               children: [
                 // Title
                 Padding(
-                  padding: const EdgeInsets.only(top: 80.0),
+                  padding: const EdgeInsets.only(top: 60.0),
                   child: Text(
                     "Sign Up",
                     style: GoogleFonts.josefinSans(

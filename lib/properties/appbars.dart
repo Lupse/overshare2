@@ -9,32 +9,30 @@ class MyAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      automaticallyImplyLeading: false,
       elevation: 0,
       iconTheme: const IconThemeData(color: Colors.white),
       centerTitle: true,
-      title: Padding(
-        padding: const EdgeInsets.only(right: 55.0),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Image(
-              image: AssetImage('assets/minilogo.png'),
-              width: 20,
+      title: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Image(
+            image: AssetImage('assets/minilogo.png'),
+            width: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 10.0, top: 2),
+            child: Text(
+              "OverShare",
+              style: GoogleFonts.josefinSans(
+                  textStyle: const TextStyle(
+                      fontSize: 13.77,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold)),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 10.0, top: 2),
-              child: Text(
-                "OverShare",
-                style: GoogleFonts.josefinSans(
-                    textStyle: const TextStyle(
-                        fontSize: 13.77,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold)),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
       backgroundColor: backgroundColor,
     );
