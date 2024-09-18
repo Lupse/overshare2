@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:overshare2/properties/appbars.dart';
 import 'package:overshare2/repositories/authentication/authentication_repository.dart';
+import 'package:overshare2/views/aboutus.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
@@ -12,7 +13,11 @@ class Homepage extends StatelessWidget {
       backgroundColor: const Color(0xFF151515),
       appBar: const PreferredSize(
           preferredSize: Size(double.infinity, 60),
-          child: MyAppBar(backgroundColor: Color(0xFF151515))),
+          child: MyAppBar(
+            withLeading: false,
+            backgroundColor: Color(0xFF151515),
+            leading: false,
+          )),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -242,7 +247,13 @@ class Homepage extends StatelessWidget {
                                                             15.5)))),
                                         backgroundColor: WidgetStatePropertyAll(
                                             Color(0xFFF76D00))),
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const AboutUs()));
+                                    },
                                     child: Text(
                                       'See the details',
                                       style: GoogleFonts.josefinSans(

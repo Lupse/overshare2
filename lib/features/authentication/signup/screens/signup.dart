@@ -21,7 +21,7 @@ class Signup extends StatelessWidget {
       backgroundColor: const Color(0xFF151515),
       appBar: const PreferredSize(
           preferredSize: Size(double.infinity, 60),
-          child: MyAppBar(backgroundColor: Color(0xFF151515))),
+          child: MyAppBar(backgroundColor: Color(0xFF151515),leading: false,withLeading: false,)),
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20),
