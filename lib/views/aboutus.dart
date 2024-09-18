@@ -39,6 +39,9 @@ class AboutUs extends StatelessWidget {
             child: Stack(children: [
               Container(
                 decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/aboutus/luthfi.jpg'),
+                        fit: BoxFit.cover),
                     color: Color(0xFF6D6D6D),
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.elliptical(100, 80),
@@ -46,15 +49,19 @@ class AboutUs extends StatelessWidget {
                         topRight: Radius.circular(25),
                         bottomLeft: Radius.circular(25))),
               ),
-              SizedBox(
-                width: 68,
-                height: 68,
-                child: Container(
-                  decoration: const BoxDecoration(
-                      color: Color(0xFF151515), shape: BoxShape.circle),
-                  child: const Padding(
-                    padding: EdgeInsets.all(12.0),
-                    child: Image(image: AssetImage('assets/aboutus/Star.png')),
+              Positioned(
+                top: -10,
+                child: SizedBox(
+                  width: 68,
+                  height: 68,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                        color: Color(0xFF151515), shape: BoxShape.circle),
+                    child: const Padding(
+                      padding: EdgeInsets.all(12.0),
+                      child:
+                          Image(image: AssetImage('assets/aboutus/Star.png')),
+                    ),
                   ),
                 ),
               ),
@@ -150,6 +157,9 @@ class AboutUs extends StatelessWidget {
             child: Stack(children: [
               Container(
                 decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/aboutus/dejan.jpeg'),
+                        fit: BoxFit.cover),
                     color: Color(0xFF6D6D6D),
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.elliptical(100, 80),
