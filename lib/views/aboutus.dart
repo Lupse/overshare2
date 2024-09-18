@@ -167,15 +167,19 @@ class AboutUs extends StatelessWidget {
                         topRight: Radius.circular(25),
                         bottomLeft: Radius.circular(25))),
               ),
-              SizedBox(
-                width: 68,
-                height: 68,
-                child: Container(
-                  decoration: const BoxDecoration(
-                      color: Color(0xFF151515), shape: BoxShape.circle),
-                  child: const Padding(
-                    padding: EdgeInsets.all(12.0),
-                    child: Image(image: AssetImage('assets/aboutus/Star.png')),
+              Positioned(
+                top: -10,
+                child: SizedBox(
+                  width: 68,
+                  height: 68,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                        color: Color(0xFF151515), shape: BoxShape.circle),
+                    child: const Padding(
+                      padding: EdgeInsets.all(12.0),
+                      child:
+                          Image(image: AssetImage('assets/aboutus/Star.png')),
+                    ),
                   ),
                 ),
               ),
