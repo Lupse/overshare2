@@ -26,6 +26,7 @@ class AuthenticationRepository extends GetxController {
         : Get.offAll(() => const Homepage());
   }
 
+// SignUp
   Future<void> createUserWithEmailAndPassword(
       String email, String password) async {
     try {
@@ -54,6 +55,7 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
+// Login
   Future<void> loginUserWithEmailAndPassword(
       String email, String password) async {
     try {

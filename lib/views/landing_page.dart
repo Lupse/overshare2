@@ -1,12 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:overshare2/features/authentication/login/screens/login.dart';
-
-//Expanded cannot be used inside a Stack.
-// You should use Expanded only within a Column, Row or Flex
-
-// First Rule: use Expanded only within a column, row or flex.
-// Second Rule: Parent column that have expanded child column must be wrapped with expanded as well
+import 'package:overshare2/properties/snackbar.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
@@ -75,7 +69,8 @@ class LandingPage extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const LoginPage()));
+                                    builder: (context) =>
+                                        const TestSnackBar()));
                           },
                           child: Text(
                             "Get Started",

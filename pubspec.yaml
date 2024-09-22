@@ -37,3 +37,7 @@ flutter:
     - "assets/aboutus/asset1.png"
     - "assets/aboutus/dejan.jpeg"
     - "assets/aboutus/luthfi.jpg"
+    - "assets/props/star.png"
+    - "assets/props/success_snapbar.png"
+    - "assets/props/error_snapbar.png"
+    - "assets/props/error.png"
