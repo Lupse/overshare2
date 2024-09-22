@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:overshare2/features/profile/user_profile/controllers/user_profile_controller.dart';
+import 'package:overshare2/features/profile/user_profile/models/user_model.dart';
 import 'package:overshare2/properties/appbars.dart';
 import 'package:overshare2/repositories/authentication/authentication_repository.dart';
 
@@ -8,6 +11,7 @@ class Homepage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profileController = Get.put(UserProfileController());
     return Scaffold(
       backgroundColor: const Color(0xFF151515),
       appBar: const PreferredSize(
@@ -24,12 +28,34 @@ class Homepage extends StatelessWidget {
                   children: [
                     SizedBox(
                       width: 110,
-                      child: Text(
-                        'Hi, Lutfi !',
-                        style: GoogleFonts.josefinSans(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w400),
+                      child: FutureBuilder(
+                        future: profileController.getUsername(),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.done) {
+                            if (snapshot.hasData) {
+                              UserModel userData = snapshot.data as UserModel;
+                              return Text(
+                                'Hi, ${userData.username}',
+                                style: GoogleFonts.josefinSans(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w400),
+                              );
+                            } else if (snapshot.hasError) {
+                              return Center(
+                                child: Text(snapshot.error.toString()),
+                              );
+                            } else {
+                              return const Center(
+                                child: Text("No Username Found"),
+                              );
+                            }
+                          } else {
+                            return const Center(
+                                child: CircularProgressIndicator());
+                          }
+                        },
                       ),
                     ),
                     const Expanded(
@@ -259,7 +285,7 @@ class Homepage extends StatelessWidget {
               ]),
             ),
             // Footer Image
-            Image(image: AssetImage('assets/homepage/asset2.png'))
+            const Image(image: AssetImage('assets/homepage/asset2.png'))
           ],
         ),
       ),

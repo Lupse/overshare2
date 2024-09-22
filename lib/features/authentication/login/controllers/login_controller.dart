@@ -15,4 +15,14 @@ class LoginController extends GetxController {
     AuthenticationRepository.instance
         .loginUserWithEmailAndPassword(email, password);
   }
+
+  @override
+  void onClose() {
+    //membersihkan controller dan focus node
+    emailController.dispose();
+    passwordController.dispose();
+    emailFocusNode.dispose();
+    passwordFocusNode.dispose();
+    super.onClose();
+  }
 }

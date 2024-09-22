@@ -21,9 +21,8 @@ class AuthenticationRepository extends GetxController {
   }
 
   _setInitialScreen(User? user) {
-    //perhatikan bagian else nya
     user == null
-        ? Get.offAll(() => const LandingPage())
+        ? Get.to(() => const LandingPage())
         : Get.offAll(() => const Homepage());
   }
 
@@ -36,16 +35,22 @@ class AuthenticationRepository extends GetxController {
           ? Get.offAll(() => const SignupSuccess())
           : Get.to(() => const LandingPage());
     } on FirebaseAuthException catch (e) {
-      print(e);
-      print(e.runtimeType);
-      print(e.code);
-      //   final ex = AuthException.code(e.code);
-      //   print('FIREBASE AUTH EXCEPTION - ${ex.message}');
-      //   print(e.code);
-      // } catch (_) {
-      //   const ex = AuthException();
-      //   print('FIREBASE AUTH EXCEPTION - ${ex.message}');
-      //throw ex;
+      final ex = AuthException.code(e.code);
+      // print('FIREBASE AUTH EXCEPTION - ${ex.message}');
+      Get.showSnackbar(GetSnackBar(
+        title: 'Error',
+        message: ex.message,
+        duration: const Duration(seconds: 2),
+      ));
+    } catch (_) {
+      const ex = AuthException();
+      // print('FIREBASE AUTH EXCEPTION - ${ex.message}');
+      Get.showSnackbar(GetSnackBar(
+        title: 'Error',
+        message: ex.message,
+        duration: const Duration(seconds: 2),
+      ));
+      throw ex;
     }
   }
 
@@ -58,10 +63,21 @@ class AuthenticationRepository extends GetxController {
           : Get.to(() => const LandingPage());
     } on FirebaseAuthException catch (e) {
       final ex = AuthException.code(e.code);
-      print('FIREBASE AUTH EXCEPTION - ${ex.message}');
+      // print(e.code);
+      // print('FIREBASE AUTH EXCEPTION - ${ex.message}');
+      Get.showSnackbar(GetSnackBar(
+        title: 'Error',
+        message: ex.message,
+        duration: const Duration(seconds: 2),
+      ));
     } catch (_) {
       const ex = AuthException();
-      print('FIREBASE AUTH EXCEPTION - ${ex.message}');
+      Get.showSnackbar(GetSnackBar(
+        title: 'Error',
+        message: ex.message,
+        duration: const Duration(seconds: 2),
+      ));
+      // print('FIREBASE AUTH EXCEPTION - ${ex.message}');
     }
   }
 

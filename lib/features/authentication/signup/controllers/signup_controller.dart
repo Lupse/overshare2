@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:overshare2/features/authentication/signup/models/signup_model.dart';
 import 'package:overshare2/repositories/authentication/authentication_repository.dart';
-import 'package:overshare2/repositories/authentication/signup_data_repository.dart';
+import 'package:overshare2/repositories/authentication/user_repository.dart';
 
 class SignupController extends GetxController {
   static SignupController get instance => Get.find();
 
   //get repo
-  final getRepo = Get.put(SignupDataRepository());
+  final getRepo = Get.put(UserRepository());
 
   //textfield controllers
   final emailController = TextEditingController();
