@@ -1,21 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class MyTextField extends StatelessWidget {
+class MyTextFormField extends StatelessWidget {
   final String text;
   final bool hide;
   final TextEditingController? myController;
-  final FocusNode? myFocusNode;
-  const MyTextField(
-      {super.key, required this.text, required this.hide, this.myController, this.myFocusNode});
+  final FormFieldValidator<String>? validator;
+  final FocusNode? focusNode;
+  const MyTextFormField({
+    super.key,
+    required this.text,
+    required this.hide,
+    this.myController,
+    this.validator,
+    this.focusNode,
+  });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 388,
       height: 61,
-      child: TextField(
-        focusNode: myFocusNode,
+      child: TextFormField(
+        focusNode: focusNode,
+        validator: validator,
         controller: myController,
         cursorColor: const Color.fromARGB(255, 69, 69, 69),
         style: const TextStyle(color: Colors.white),
