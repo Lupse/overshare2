@@ -3,13 +3,19 @@ import 'package:google_fonts/google_fonts.dart';
 
 class MyAppBar extends StatelessWidget {
   final Color backgroundColor;
+  final bool leading;
+  final bool withLeading;
 
-  const MyAppBar({required this.backgroundColor, super.key});
+  const MyAppBar(
+      {required this.backgroundColor,
+      super.key,
+      required this.leading,
+      required this.withLeading});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      automaticallyImplyLeading: false,
+      automaticallyImplyLeading: leading,
       elevation: 0,
       iconTheme: const IconThemeData(color: Colors.white),
       centerTitle: true,
@@ -32,6 +38,11 @@ class MyAppBar extends StatelessWidget {
                       fontWeight: FontWeight.bold)),
             ),
           ),
+          withLeading
+              ? const SizedBox(
+                  width: 55,
+                )
+              : const SizedBox()
         ],
       ),
       backgroundColor: backgroundColor,

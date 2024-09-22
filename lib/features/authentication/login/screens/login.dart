@@ -23,8 +23,9 @@ class LoginPage extends StatelessWidget {
       appBar: const PreferredSize(
         preferredSize: Size(double.infinity, 60),
         child: MyAppBar(
-          backgroundColor: Color(0xFF151515),
-        ),
+            withLeading: false,
+            backgroundColor: Color(0xFF151515),
+            leading: false),
       ),
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),

@@ -48,6 +48,31 @@ class Signup extends StatelessWidget {
                       ),
                     ),
                   ),
+          child: MyAppBar(backgroundColor: Color(0xFF151515),leading: false,withLeading: false,)),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          width: 450,
+          decoration: const BoxDecoration(color: Color(0xFF151515)),
+          child: Form(
+            key: formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                // Title
+                Padding(
+                  padding: const EdgeInsets.only(top: 60.0),
+                  child: Text(
+                    "Sign Up",
+                    style: GoogleFonts.josefinSans(
+                      textStyle: const TextStyle(
+                        fontSize: 34.35,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ),
 
                   // Text
                   Padding(
