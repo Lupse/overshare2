@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:overshare2/features/profile/user_profile/controllers/user_profile_controller.dart';
-import 'package:overshare2/features/profile/user_profile/models/user_model.dart';
 import 'package:overshare2/properties/appbars.dart';
 import 'package:overshare2/repositories/authentication/authentication_repository.dart';
 import 'package:overshare2/views/aboutus.dart';
@@ -12,7 +11,11 @@ class Homepage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final profileController = Get.put(UserProfileController());
+    final ProfileController profileController = Get.put(ProfileController());
+
+    // Fetch the user profile based on the logged-in user's email
+    profileController.fetchUserProfileByEmail();
+
     return Scaffold(
       backgroundColor: const Color(0xFF151515),
       appBar: const PreferredSize(
@@ -32,37 +35,23 @@ class Homepage extends StatelessWidget {
                 Row(
                   children: [
                     SizedBox(
-                      width: 110,
-                      child: FutureBuilder(
-                        future: profileController.getUsername(),
-                        builder: (context, snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.done) {
-                            if (snapshot.hasData) {
-                              UserModel userData = snapshot.data as UserModel;
-                              return Text(
-                                'Hi, ${userData.username}',
-                                style: GoogleFonts.josefinSans(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w400),
-                              );
-                            } else if (snapshot.hasError) {
-                              return Center(
-                                child: Text(snapshot.error.toString()),
-                              );
-                            } else {
-                              return const Center(
-                                child: Text("No Username Found"),
-                              );
-                            }
-                          } else {
+                        width: 110,
+                        child: Obx(() {
+                          if (profileController.isLoading.value) {
                             return const Center(
                                 child: CircularProgressIndicator());
+                          } else if (profileController.profile.value != null) {
+                            return Text(
+                              'Hello, ${profileController.profile.value!.username}',
+                              style: GoogleFonts.josefinSans(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w400),
+                            );
+                          } else {
+                            return const Text('User not found');
                           }
-                        },
-                      ),
-                    ),
+                        })),
                     const Expanded(
                       child: Divider(
                         indent: 12,
