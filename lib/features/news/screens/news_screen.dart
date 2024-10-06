@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:overshare2/features/news/models/news_list.dart';
+import 'package:overshare2/features/news/screens/news_screen_detail.dart';
 import 'package:overshare2/properties/appbars.dart';
 
 class NewsScreen extends StatelessWidget {
@@ -23,7 +25,7 @@ class NewsScreen extends StatelessWidget {
               itemCount: newsList.length,
               itemBuilder: (context, index) {
                 //ngambil list dummy data
-                final news = newsList[index];
+                final News news = newsList[index];
 
                 return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -38,6 +40,7 @@ class NewsScreen extends StatelessWidget {
                       ),
                       title: Text(news.name),
                       subtitle: Text(news.description),
+                      onTap: () => Get.to(NewsScreenDetail(news: news,)),
                     ),
                   ),
                 );
