@@ -19,17 +19,17 @@ class Signup extends StatelessWidget {
     final signUpControllerInstance = Get.find<SignupController>();
     final phoneNumberControllerInstance = Get.find<PhoneNumberController>();
 
-    return Scaffold(
-        backgroundColor: const Color(0xFF151515),
-        appBar: const PreferredSize(
-            preferredSize: Size(double.infinity, 60),
-            child: MyAppBar(
-                backgroundColor: Color(0xFF151515),
-                leading: false,
-                withLeading: false)),
-        body: GestureDetector(
-          onTap: FocusScope.of(context).unfocus,
-          child: Form(
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+          backgroundColor: const Color(0xFF151515),
+          appBar: const PreferredSize(
+              preferredSize: Size(double.infinity, 60),
+              child: MyAppBar(
+                  backgroundColor: Color(0xFF151515),
+                  leading: false,
+                  withLeading: false)),
+          body: Form(
             key: signupFormKey,
             child: SingleChildScrollView(
               child: Container(
@@ -119,6 +119,8 @@ class Signup extends StatelessWidget {
                           width: 388,
                           height: 61,
                           child: PhoneNumberInput(
+                            controller: phoneNumberControllerInstance
+                                .phoneNumberController,
                             focusNode: phoneNumberControllerInstance
                                 .phoneNumberFocusNode,
                             onInputChanged: (PhoneNumber number) {
@@ -249,7 +251,7 @@ class Signup extends StatelessWidget {
                 ),
               ),
             ),
-          ),
-        ));
+          )),
+    );
   }
 }

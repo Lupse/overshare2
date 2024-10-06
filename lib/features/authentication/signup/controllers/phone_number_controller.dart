@@ -4,6 +4,8 @@ import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 class PhoneNumberController extends GetxController {
   final phoneNumberFocusNode = FocusNode();
+  final phoneNumberController = TextEditingController();
+
   var phoneNumber = ''.obs;
   var countryCode = ''.obs;
 
@@ -19,6 +21,7 @@ class PhoneNumberController extends GetxController {
   @override
   void onClose() {
     phoneNumberFocusNode.dispose();
+    phoneNumberController.dispose();
     super.onClose();
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/instance_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:overshare2/features/authentication/login/controllers/login_controller.dart';
@@ -7,29 +8,26 @@ import 'package:overshare2/properties/button.dart';
 import 'package:overshare2/properties/text_form_field.dart';
 import 'package:overshare2/features/authentication/signup/screens/signup.dart';
 
-//sizedbox dihilangkan karna tidak bisa melakukan input email maupun password
-//tolong dibantuu
-
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final loginController = Get.put(LoginController());
+    final LoginController loginController = Get.find();
     final loginFormKey = GlobalKey<FormState>();
 
-    return Scaffold(
-      backgroundColor: const Color(0xFF151515),
-      appBar: const PreferredSize(
-        preferredSize: Size(double.infinity, 60),
-        child: MyAppBar(
-            withLeading: false,
-            backgroundColor: Color(0xFF151515),
-            leading: false),
-      ),
-      body: GestureDetector(
-        onTap: () => FocusScope.of(context).unfocus(),
-        child: SingleChildScrollView(
+    return GestureDetector(
+      onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+      child: Scaffold(
+        backgroundColor: const Color(0xFF151515),
+        appBar: const PreferredSize(
+          preferredSize: Size(double.infinity, 60),
+          child: MyAppBar(
+              withLeading: false,
+              backgroundColor: Color(0xFF151515),
+              leading: false),
+        ),
+        body: SingleChildScrollView(
           child: Container(
             width: double.infinity,
             padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -78,14 +76,17 @@ class LoginPage extends StatelessWidget {
                   // Email Textfield
                   Padding(
                     padding: const EdgeInsets.only(top: 20.0),
-                    child: SizedBox(
-                      width: 388,
-                      height: 61,
+                    child: Container(
+                      constraints:
+                          const BoxConstraints(maxWidth: 388, maxHeight: 61),
                       child: MyTextFormField(
                         focusNode: loginController.emailFocusNode,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Email cannot be empty';
+                          } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+')
+                              .hasMatch(value)) {
+                            return 'Please enter a valid email';
                           }
                           return null;
                         },
@@ -99,9 +100,9 @@ class LoginPage extends StatelessWidget {
                   // Password Textfield
                   Padding(
                     padding: const EdgeInsets.only(top: 20.0),
-                    child: SizedBox(
-                        width: 388,
-                        height: 61,
+                    child: Container(
+                        constraints:
+                            const BoxConstraints(maxWidth: 388, maxHeight: 61),
                         child: MyTextFormField(
                           focusNode: loginController.passwordFocusNode,
                           validator: (value) {
@@ -126,7 +127,7 @@ class LoginPage extends StatelessWidget {
                           text: 'Login',
                           onPressed: () {
                             if (loginFormKey.currentState!.validate()) {
-                              LoginController.instance.loginUser(
+                              loginController.loginUser(
                                   loginController.emailController.text.trim(),
                                   loginController.passwordController.text
                                       .trim());
@@ -153,10 +154,7 @@ class LoginPage extends StatelessWidget {
                   // Register Link
                   InkWell(
                     onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Signup()));
+                      Get.to(const Signup());
                     },
                     child: Text(
                       'Sign Up',

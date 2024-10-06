@@ -39,7 +39,6 @@ class PhoneNumberInputState extends State<PhoneNumberInput> {
           borderRadius: BorderRadius.circular(9)),
       //input phone
       child: InternationalPhoneNumberInput(
-        focusNode: FocusNode(),
         validator: (String? value) {
           if (value == null || value.isEmpty) {
             return "Phone number cannot be empty";
