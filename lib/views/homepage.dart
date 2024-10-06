@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:overshare2/features/kalkulator/calculator.dart';
 import 'package:overshare2/features/profile/user_profile/controllers/user_profile_controller.dart';
 import 'package:overshare2/properties/appbars.dart';
 import 'package:overshare2/repositories/authentication/authentication_repository.dart';
@@ -147,7 +148,9 @@ class Homepage extends StatelessWidget {
                                 color: Color(0xFFF07A00)),
                             child: IconButton(
                                 color: Colors.white,
-                                onPressed: () {},
+                                onPressed: () {
+                                  Get.to(const CalculatorPage());
+                                },
                                 icon: const Icon(Icons.arrow_forward)),
                           ),
                         ),
