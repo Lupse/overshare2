@@ -27,4 +27,18 @@ var newsList = [
         'TechCrunch delivers the latest news on startups, gadgets, and technology trends.',
     imageAsset: 'assets/logo.png',
   ),
+  News(
+    name: 'TechCrunch',
+    url: 'https://techcrunch.com',
+    description:
+        'TechCrunch delivers the latest news on startups, gadgets, and technology trends.',
+    imageAsset: 'assets/login/asset1.png',
+  ),
+  News(
+    name: 'TechCrunch',
+    url: 'https://techcrunch.com',
+    description:
+        'TechCrunch delivers the latest news on startups, gadgets, and technology trends.',
+    imageAsset: 'assets/logo.png',
+  ),
 ];
