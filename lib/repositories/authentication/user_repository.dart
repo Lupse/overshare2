@@ -11,8 +11,10 @@ class UserRepository extends GetxController {
   //create user in database
   signupUserData(SignupModel user) async {
     await _db
-        .collection("Users")
+        .collection('users')
         .add(user.toJson())
+        .whenComplete(() =>
+            print('USER REPOSITORY - berasil memasukkan data ke database'))
         .catchError((error, stackTrace) {
       print(error.toString());
     });

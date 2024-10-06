@@ -16,7 +16,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final loginController = Get.put(LoginController());
-    final formKeyLogin = GlobalKey<FormState>();
+    final loginFormKey = GlobalKey<FormState>();
 
     return Scaffold(
       backgroundColor: const Color(0xFF151515),
@@ -35,7 +35,7 @@ class LoginPage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             decoration: const BoxDecoration(color: Color(0xFF151515)),
             child: Form(
-              key: formKeyLogin,
+              key: loginFormKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -125,7 +125,7 @@ class LoginPage extends StatelessWidget {
                       child: MyButton(
                           text: 'Login',
                           onPressed: () {
-                            if (formKeyLogin.currentState!.validate()) {
+                            if (loginFormKey.currentState!.validate()) {
                               LoginController.instance.loginUser(
                                   loginController.emailController.text.trim(),
                                   loginController.passwordController.text

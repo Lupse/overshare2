@@ -2,6 +2,9 @@ import 'dart:async'; // Import dart:async for Timer
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:overshare2/features/authentication/signup/controllers/phone_number_controller.dart';
+import 'package:overshare2/features/authentication/signup/controllers/signup_controller.dart';
+import 'package:overshare2/features/authentication/signup/models/signup_model.dart';
 import 'package:overshare2/views/homepage.dart';
 
 class SignupSuccess extends StatefulWidget {
@@ -12,6 +15,8 @@ class SignupSuccess extends StatefulWidget {
 }
 
 class SignupSuccessState extends State<SignupSuccess> {
+  final signUpControllerInstance = Get.find<SignupController>();
+  final phoneNumberControllerInstance = Get.find<PhoneNumberController>();
   int _counter = 3;
   Timer? _timer;
 
@@ -29,6 +34,12 @@ class SignupSuccessState extends State<SignupSuccess> {
         });
       } else {
         timer.cancel(); // Cancel timer when counter reaches 0
+        final user = SignupModel(
+            username: signUpControllerInstance.usernameController.text.trim(),
+            phone: phoneNumberControllerInstance.getPhoneNumber(),
+            email: signUpControllerInstance.emailController.text.trim(),
+            password: signUpControllerInstance.passwordController.text.trim());
+        signUpControllerInstance.signupUserData(user);
         Get.offAll(() => const Homepage());
       }
     });

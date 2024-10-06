@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+import 'package:overshare2/features/authentication/signup/controllers/phone_number_controller.dart';
 import 'package:overshare2/features/authentication/signup/controllers/signup_controller.dart';
-import 'package:overshare2/features/authentication/signup/models/signup_model.dart';
 import 'package:overshare2/properties/appbars.dart';
 import 'package:overshare2/properties/button.dart';
 import 'package:overshare2/properties/phonetextfield.dart';
@@ -15,7 +16,8 @@ class Signup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final signupFormKey = GlobalKey<FormState>();
-    final signUpController = Get.put(SignupController());
+    final signUpControllerInstance = Get.find<SignupController>();
+    final phoneNumberControllerInstance = Get.find<PhoneNumberController>();
 
     return Scaffold(
         backgroundColor: const Color(0xFF151515),
@@ -25,14 +27,15 @@ class Signup extends StatelessWidget {
                 backgroundColor: Color(0xFF151515),
                 leading: false,
                 withLeading: false)),
-        body: Form(
-          key: signupFormKey,
-          child: SingleChildScrollView(
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              width: 450,
-              decoration: const BoxDecoration(color: Color(0xFF151515)),
-              child: Form(
+        body: GestureDetector(
+          onTap: FocusScope.of(context).unfocus,
+          child: Form(
+            key: signupFormKey,
+            child: SingleChildScrollView(
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                width: 450,
+                decoration: const BoxDecoration(color: Color(0xFF151515)),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -66,20 +69,23 @@ class Signup extends StatelessWidget {
                       ),
                     ),
 
-                    // Email Textfield
+                    // Username Textfield
                     Padding(
                       padding: const EdgeInsets.only(top: 20.0),
                       child: SizedBox(
                           width: 388,
                           height: 61,
                           child: MyTextFormField(
+                            focusNode:
+                                signUpControllerInstance.usernameFocusNode,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Username cannot be empty';
                               }
                               return null;
                             },
-                            myController: signUpController.usernameController,
+                            myController:
+                                signUpControllerInstance.usernameController,
                             text: 'Username',
                             hide: false,
                           )),
@@ -92,23 +98,40 @@ class Signup extends StatelessWidget {
                           width: 388,
                           height: 61,
                           child: MyTextFormField(
+                            focusNode: signUpControllerInstance.emailFocusNode,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Email cannot be empty';
                               }
                               return null;
                             },
-                            myController: signUpController.emailController,
+                            myController:
+                                signUpControllerInstance.emailController,
                             text: 'Email',
                             hide: false,
                           )),
                     ),
 
                     // Phone Textfield
-                    const Padding(
-                      padding: EdgeInsets.only(top: 20.0),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20.0),
                       child: SizedBox(
-                          width: 388, height: 61, child: PhoneNumberInput()),
+                          width: 388,
+                          height: 61,
+                          child: PhoneNumberInput(
+                            focusNode: phoneNumberControllerInstance
+                                .phoneNumberFocusNode,
+                            onInputChanged: (PhoneNumber number) {
+                              phoneNumberControllerInstance
+                                  .setPhoneNumber(number);
+                            },
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Phone number cannot be empty';
+                              }
+                              return null;
+                            },
+                          )),
                     ),
 
                     // Password Textfield
@@ -118,13 +141,16 @@ class Signup extends StatelessWidget {
                           width: 388,
                           height: 61,
                           child: MyTextFormField(
+                            focusNode:
+                                signUpControllerInstance.passwordFocusNode,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Password cannot be empty';
                               }
                               return null;
                             },
-                            myController: signUpController.passwordController,
+                            myController:
+                                signUpControllerInstance.passwordController,
                             text: 'Password',
                             hide: true,
                           )),
@@ -137,20 +163,22 @@ class Signup extends StatelessWidget {
                           width: 388,
                           height: 61,
                           child: MyTextFormField(
+                            focusNode: signUpControllerInstance
+                                .confirmPasswordFocusNode,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Password cannot be empty';
                               } else if (value !=
-                                  SignupController
-                                      .instance.passwordController.text) {
+                                  signUpControllerInstance
+                                      .passwordController.text) {
                                 return 'Password does not match';
                               }
                               return null;
                             },
                             text: 'Confirm Password',
                             hide: true,
-                            myController:
-                                signUpController.confirmPasswordController,
+                            myController: signUpControllerInstance
+                                .confirmPasswordController,
                           )),
                     ),
 
@@ -164,32 +192,21 @@ class Signup extends StatelessWidget {
                               text: 'Sign Up',
                               onPressed: () {
                                 if (signupFormKey.currentState!.validate()) {
-                                  //signup data
-                                  final user = SignupModel(
-                                      username: signUpController
-                                          .usernameController.text
-                                          .trim(),
-                                      phone: signUpController
-                                          .phoneController.text
-                                          .trim(),
-                                      email: signUpController
-                                          .emailController.text
-                                          .trim(),
-                                      password: signUpController
-                                          .passwordController.text
-                                          .trim());
-                                  signUpController.signupUserData(user);
-
+                                  const Center(
+                                      child: CircularProgressIndicator());
                                   //signup auth
                                   SignupController.instance.signupUserAuth(
-                                      signUpController.emailController.text
+                                      signUpControllerInstance
+                                          .emailController.text
                                           .trim(),
-                                      signUpController.passwordController.text
+                                      signUpControllerInstance
+                                          .passwordController.text
                                           .trim());
                                 }
                               })),
                     ),
 
+                    // Redirect to login
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,

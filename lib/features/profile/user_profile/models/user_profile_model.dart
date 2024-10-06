@@ -26,12 +26,16 @@
 //   }
 // }
 
-class UserModel {
+class UserProfileModel {
   final String username;
 
-  UserModel({required this.username});
+  UserProfileModel({required this.username});
 
-  factory UserModel.fromJson(Map<String, dynamic> json) {
-    return UserModel(username: json['username']);
+  factory UserProfileModel.fromJson(Map<String, dynamic> json) {
+    return UserProfileModel(username: json['username']);
   }
+
+  // factory UserModel.fromJson(Map<String, dynamic> json) {
+  //   return UserModel(username: json['username']);
+  // }
 }

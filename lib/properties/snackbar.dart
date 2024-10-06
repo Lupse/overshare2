@@ -1,51 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class TestSnackBar extends StatelessWidget {
-  const TestSnackBar({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            TextButton(
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      clipBehavior: Clip.none,
-                      padding: const EdgeInsets.all(0),
-                      behavior: SnackBarBehavior.floating,
-                      backgroundColor: Colors.transparent,
-                      content: _successSnackBar(context),
-                      duration: const Duration(seconds: 2),
-                    ),
-                  );
-                },
-                child: const Text('Test Success Snackbar')),
-            TextButton(
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      clipBehavior: Clip.none,
-                      padding: const EdgeInsets.all(0),
-                      behavior: SnackBarBehavior.floating,
-                      backgroundColor: Colors.transparent,
-                      content: _errorSnackBar(context),
-                      duration: const Duration(seconds: 2),
-                    ),
-                  );
-                },
-                child: const Text('Test Warning Snackbar')),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _successSnackBar(BuildContext context) {
+class Snackbar extends GetxController {
+  //success snackbar
+  Widget successSnackbar(String title, String message) {
     return SizedBox(
       width: 388,
       height: 98,
@@ -83,12 +42,12 @@ class TestSnackBar extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Welcome!',
+                          title,
                           style: GoogleFonts.josefinSans(
                               fontSize: 34.35, fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          'Hello, there! It’s good to see you here with us!',
+                          message,
                           style: GoogleFonts.josefinSans(
                             fontSize: 14,
                           ),
@@ -97,14 +56,6 @@ class TestSnackBar extends StatelessWidget {
                     ),
                   ),
                 ),
-                IconButton(
-                    onPressed: () {
-                      ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                    },
-                    icon: const Icon(
-                      Icons.cancel_outlined,
-                      color: Colors.white,
-                    ))
               ],
             )
           ],
@@ -113,7 +64,8 @@ class TestSnackBar extends StatelessWidget {
     );
   }
 
-  Widget _errorSnackBar(BuildContext context) {
+  //error snackbar
+  Widget errorSnackbar(String title, String message) {
     return SizedBox(
       width: 388,
       height: 98,
@@ -151,12 +103,12 @@ class TestSnackBar extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Oops!',
+                          title,
                           style: GoogleFonts.josefinSans(
                               fontSize: 34.35, fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          'I think there some mistake on your email or password',
+                          message,
                           style: GoogleFonts.josefinSans(
                             fontSize: 14,
                           ),
@@ -165,14 +117,6 @@ class TestSnackBar extends StatelessWidget {
                     ),
                   ),
                 ),
-                IconButton(
-                    onPressed: () {
-                      ScaffoldMessenger.of(context).hideCurrentSnackBar();
-                    },
-                    icon: const Icon(
-                      Icons.cancel_outlined,
-                      color: Colors.white,
-                    ))
               ],
             )
           ],

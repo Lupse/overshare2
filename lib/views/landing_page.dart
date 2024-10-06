@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:overshare2/properties/snackbar.dart';
+import 'package:overshare2/features/authentication/login/screens/login.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
@@ -69,8 +69,7 @@ class LandingPage extends StatelessWidget {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                        const TestSnackBar()));
+                                    builder: (context) => const LoginPage()));
                           },
                           child: Text(
                             "Get Started",

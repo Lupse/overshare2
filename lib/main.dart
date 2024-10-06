@@ -2,13 +2,26 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/instance_manager.dart';
+import 'package:overshare2/features/authentication/login/controllers/login_controller.dart';
+import 'package:overshare2/features/authentication/signup/controllers/phone_number_controller.dart';
+import 'package:overshare2/features/authentication/signup/controllers/signup_controller.dart';
+import 'package:overshare2/features/profile/user_profile/controllers/user_profile_controller.dart';
 import 'package:overshare2/firebase_options.dart';
+import 'package:overshare2/properties/snackbar.dart';
 import 'package:overshare2/repositories/authentication/authentication_repository.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
       .then((value) => Get.put(AuthenticationRepository()));
+
+  //controller
+  Get.lazyPut(() => LoginController(), fenix: true);
+  Get.lazyPut(() => SignupController(), fenix: true);
+  Get.lazyPut(() => PhoneNumberController(), fenix: true);
+  Get.lazyPut(() => ProfileController(), fenix: true);
+  Get.lazyPut(() => Snackbar(), fenix: true);
+
   runApp(const MainApp());
 }
 
