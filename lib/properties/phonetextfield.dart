@@ -7,6 +7,9 @@ class PhoneNumberInput extends StatefulWidget {
   final Function(bool)? onInputValidated;
   final Function(PhoneNumber)? onSaved;
   final TextEditingController? controller;
+  final String? Function(String?)? validator;
+  final PhoneNumber? number;
+  final FocusNode? focusNode;
 
   const PhoneNumberInput({
     super.key,
@@ -14,6 +17,9 @@ class PhoneNumberInput extends StatefulWidget {
     this.onInputValidated,
     this.onSaved,
     this.controller,
+    this.validator,
+    this.number,
+    this.focusNode,
   });
 
   @override
@@ -31,7 +37,18 @@ class PhoneNumberInputState extends State<PhoneNumberInput> {
       decoration: BoxDecoration(
           border: Border.all(color: const Color(0xFFD45101)),
           borderRadius: BorderRadius.circular(9)),
+      //input phone
       child: InternationalPhoneNumberInput(
+        focusNode: FocusNode(),
+        validator: (String? value) {
+          if (value == null || value.isEmpty) {
+            return "Phone number cannot be empty";
+          }
+          if (value.length < 9) {
+            return "Invalid Phone Number";
+          }
+          return null;
+        },
         selectorTextStyle: GoogleFonts.josefinSans(color: Colors.white),
         spaceBetweenSelectorAndTextField: 0,
         textStyle: const TextStyle(color: Colors.white),
@@ -42,14 +59,17 @@ class PhoneNumberInputState extends State<PhoneNumberInput> {
         ),
         onInputChanged: widget.onInputChanged,
         onInputValidated: widget.onInputValidated,
+        //selector
         selectorConfig: const SelectorConfig(
           selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
         ),
         ignoreBlank: true,
-        autoValidateMode: AutovalidateMode.disabled,
-        initialValue: number,
+        //auto validation
+        autoValidateMode: AutovalidateMode.onUserInteraction,
+        initialValue: widget.number ?? number,
         textFieldController: widget.controller,
-        formatInput: false,
+        //auto format, ngasih -
+        formatInput: true,
         keyboardType:
             const TextInputType.numberWithOptions(signed: true, decimal: true),
         cursorColor: const Color.fromARGB(255, 69, 69, 69),

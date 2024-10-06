@@ -14,8 +14,13 @@ class SignupController extends GetxController {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
-  final phoneController = TextEditingController();
   final usernameController = TextEditingController();
+
+  //focusn node
+  final emailFocusNode = FocusNode();
+  final passwordFocusNode = FocusNode();
+  final confirmPasswordFocusNode = FocusNode();
+  final usernameFocusNode = FocusNode();
 
   //signin up an user
   void signupUserAuth(String email, String password) {
@@ -25,5 +30,19 @@ class SignupController extends GetxController {
 
   Future<void> signupUserData(SignupModel user) async {
     await getRepo.signupUserData(user);
+  }
+
+  @override
+  void onClose() {
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    usernameController.dispose();
+
+    emailFocusNode.dispose();
+    passwordFocusNode.dispose();
+    confirmPasswordFocusNode.dispose();
+    usernameFocusNode.dispose();
+    super.onClose();
   }
 }
