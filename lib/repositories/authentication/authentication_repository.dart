@@ -15,9 +15,11 @@ class AuthenticationRepository extends GetxController {
   final _auth = FirebaseAuth.instance;
   late final Rx<User?> firebaseUser;
 
+  RxBool isLoading = false.obs;
+
   @override
   void onReady() {
-    Future.delayed(const Duration(seconds: 3));
+    Future.delayed(const Duration(seconds: 1));
     firebaseUser = Rx<User?>(_auth.currentUser);
     firebaseUser.bindStream(_auth.userChanges());
     ever(firebaseUser, _setInitialScreen);
@@ -33,6 +35,7 @@ class AuthenticationRepository extends GetxController {
   Future<void> createUserWithEmailAndPassword(
       String email, String password) async {
     try {
+      isLoading.value = true;
       await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       firebaseUser.value != null
@@ -69,6 +72,9 @@ class AuthenticationRepository extends GetxController {
         ));
       }
       throw ex;
+    } finally {
+      //try sudah selesai
+      isLoading.value = false;
     }
   }
 
@@ -76,10 +82,19 @@ class AuthenticationRepository extends GetxController {
   Future<void> loginUserWithEmailAndPassword(
       String email, String password) async {
     try {
+      isLoading.value = true;
       await _auth.signInWithEmailAndPassword(email: email, password: password);
-      firebaseUser.value != null
-          ? Get.offAll(() => const Homepage())
-          : Get.to(() => const LandingPage());
+      if (firebaseUser.value != null) {
+        ScaffoldMessenger.of(Get.overlayContext!).showSnackBar(SnackBar(
+          clipBehavior: Clip.none,
+          padding: const EdgeInsets.all(0),
+          behavior: SnackBarBehavior.floating,
+          backgroundColor: Colors.transparent,
+          content: snackbar.successSnackbar("Success", "Login Success"),
+          duration: const Duration(seconds: 2),
+        ));
+        Get.offAll(const Homepage());
+      }
     } on FirebaseAuthException catch (e) {
       final ex = AuthException.code(e.code);
       // print(e.code);
@@ -111,6 +126,9 @@ class AuthenticationRepository extends GetxController {
         ));
       }
       // print('FIREBASE AUTH EXCEPTION - ${ex.message}');
+    } finally {
+      //try sudah selesai
+      isLoading.value = false;
     }
   }
 
