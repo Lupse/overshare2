@@ -29,7 +29,9 @@ class NewsScreenDetail extends StatelessWidget {
           Text(
             news.name,
             style: const TextStyle(color: Colors.white),
-          )
+          ),
+
+          
         ],
       )),
     );
