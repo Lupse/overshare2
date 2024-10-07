@@ -8,6 +8,8 @@ class CalculatorButton extends StatelessWidget {
   final bool flex;
   final bool useIcon;
   final IconData? icons;
+  final VoidCallback onPressed;
+
   const CalculatorButton(
       {super.key,
       required this.backgroundColor,
@@ -15,7 +17,8 @@ class CalculatorButton extends StatelessWidget {
       this.flex = false,
       this.useIcon = false,
       this.icons,
-      required this.text});
+      required this.text,
+      required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +29,7 @@ class CalculatorButton extends StatelessWidget {
             child: ElevatedButton(
                 style: ButtonStyle(
                     backgroundColor: WidgetStatePropertyAll(backgroundColor)),
-                onPressed: () {},
+                onPressed: onPressed,
                 child: useIcon
                     ? Icon(
                         icons,
@@ -40,13 +43,15 @@ class CalculatorButton extends StatelessWidget {
                             fontWeight: FontWeight.bold),
                       )),
           )
+
+        //untuk nagka 0 button lebih panjang
         : SizedBox(
             width: 80,
             height: 80,
             child: ElevatedButton(
                 style: ButtonStyle(
                     backgroundColor: WidgetStatePropertyAll(backgroundColor)),
-                onPressed: () {},
+                onPressed: onPressed,
                 child: useIcon
                     ? Icon(
                         icons,
