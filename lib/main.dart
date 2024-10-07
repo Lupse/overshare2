@@ -5,6 +5,7 @@ import 'package:get/instance_manager.dart';
 import 'package:overshare2/features/authentication/login/controllers/login_controller.dart';
 import 'package:overshare2/features/authentication/signup/controllers/phone_number_controller.dart';
 import 'package:overshare2/features/authentication/signup/controllers/signup_controller.dart';
+import 'package:overshare2/features/kalkulator/controllers/calculator_controller.dart';
 import 'package:overshare2/features/profile/user_profile/controllers/user_profile_controller.dart';
 import 'package:overshare2/firebase_options.dart';
 import 'package:overshare2/properties/snackbar.dart';
@@ -20,8 +21,10 @@ void main() {
   Get.lazyPut(() => SignupController(), fenix: true);
   Get.lazyPut(() => PhoneNumberController(), fenix: true);
   Get.lazyPut(() => ProfileController(), fenix: true);
-  Get.lazyPut(() => Snackbar(), fenix: true);
+  Get.lazyPut(() => CalculatorController());
 
+  Get.lazyPut(() => Snackbar(), fenix: true);
+  
   runApp(const MainApp());
 }
 

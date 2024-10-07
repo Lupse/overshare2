@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:get/instance_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:overshare2/features/kalkulator/calculatorbutton.dart';
+import 'package:overshare2/features/kalkulator/controllers/calculator_controller.dart';
+import 'package:overshare2/properties/calculatorbutton.dart';
 import 'package:overshare2/properties/appbars.dart';
 
 class CalculatorPage extends StatelessWidget {
-  const CalculatorPage({super.key});
+  final CalculatorController calculatorController = Get.find();
+  CalculatorPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,25 +32,31 @@ class CalculatorPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Text(
-                      '8,953 x 3',
-                      style: GoogleFonts.josefinSans(
-                          color: const Color(0xFFFD6500), fontSize: 54.56),
+                    //calculator display
+                    Obx(
+                      () => Text(
+                        calculatorController.userInput.value,
+                        style: GoogleFonts.josefinSans(
+                            color: const Color(0xFFFD6500), fontSize: 54.56),
+                      ),
                     ),
-                    Text(
-                      '26,859',
-                      style: GoogleFonts.josefinSans(
-                          color: const Color(0xFF565353), fontSize: 35.33),
+
+                    Obx(
+                      () => Text(
+                        calculatorController.result.value,
+                        style: GoogleFonts.josefinSans(
+                            color: const Color(0xFF565353), fontSize: 35.33),
+                      ),
                     ),
                   ],
                 ),
               ),
-              const SizedBox(
+              SizedBox(
                 width: double.infinity,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
+                    const Row(
                       children: [
                         Padding(
                           padding: EdgeInsets.only(right: 12.0),
@@ -65,44 +75,56 @@ class CalculatorPage extends StatelessWidget {
                     ),
                     Column(
                       children: [
-                        Padding(
+                        const Padding(
                           padding: EdgeInsets.only(bottom: 12.0),
                           child: Divider(),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(bottom: 12.0),
+                          padding: const EdgeInsets.only(bottom: 12.0),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               CalculatorButton(
                                 text: 'C',
-                                backgroundColor: Color(0xFF830404),
+                                backgroundColor: const Color(0xFF830404),
                                 textColor: Colors.white,
+                                onPressed: () {
+                                  calculatorController.input('C');
+                                },
                               ),
                               CalculatorButton(
                                 icons: Icons.backspace_outlined,
                                 useIcon: true,
                                 text: '',
-                                backgroundColor: Color(0xFFB4B1B1),
+                                backgroundColor: const Color(0xFFB4B1B1),
                                 textColor: Colors.white,
+                                onPressed: () {
+                                  calculatorController.input('backspace');
+                                },
                               ),
                               CalculatorButton(
                                 text: '%',
-                                backgroundColor: Color(0xFFB4B1B1),
+                                backgroundColor: const Color(0xFFB4B1B1),
                                 textColor: Colors.black,
+                                onPressed: () {
+                                  calculatorController.input('%');
+                                },
                               ),
                               CalculatorButton(
                                 text: '/',
-                                backgroundColor: Color(0xFFFD6500),
+                                backgroundColor: const Color(0xFFFD6500),
                                 textColor: Colors.white,
+                                onPressed: () {
+                                  calculatorController.input('/');
+                                },
                               ),
                             ],
                           ),
                         ),
                         // Baris kedua
                         Padding(
-                          padding: EdgeInsets.only(
+                          padding: const EdgeInsets.only(
                             bottom: 12.0,
                           ),
                           child: Row(
@@ -111,30 +133,42 @@ class CalculatorPage extends StatelessWidget {
                             children: [
                               CalculatorButton(
                                 text: '1',
-                                backgroundColor: Color(0xFF303030),
+                                backgroundColor: const Color(0xFF303030),
                                 textColor: Colors.white,
+                                onPressed: () {
+                                  calculatorController.input('1');
+                                },
                               ),
                               CalculatorButton(
                                 text: '2',
-                                backgroundColor: Color(0xFF303030),
+                                backgroundColor: const Color(0xFF303030),
                                 textColor: Colors.white,
+                                onPressed: () {
+                                  calculatorController.input('2');
+                                },
                               ),
                               CalculatorButton(
                                 text: '3',
-                                backgroundColor: Color(0xFF303030),
+                                backgroundColor: const Color(0xFF303030),
                                 textColor: Colors.white,
+                                onPressed: () {
+                                  calculatorController.input('3');
+                                },
                               ),
                               CalculatorButton(
                                 text: 'X',
-                                backgroundColor: Color(0xFFFD6500),
+                                backgroundColor: const Color(0xFFFD6500),
                                 textColor: Colors.white,
+                                onPressed: () {
+                                  calculatorController.input('*');
+                                },
                               ),
                             ],
                           ),
                         ),
                         // Baris Ketiga
                         Padding(
-                          padding: EdgeInsets.only(
+                          padding: const EdgeInsets.only(
                             bottom: 12.0,
                           ),
                           child: Row(
@@ -143,30 +177,42 @@ class CalculatorPage extends StatelessWidget {
                             children: [
                               CalculatorButton(
                                 text: '4',
-                                backgroundColor: Color(0xFF303030),
+                                backgroundColor: const Color(0xFF303030),
                                 textColor: Colors.white,
+                                onPressed: () {
+                                  calculatorController.input('4');
+                                },
                               ),
                               CalculatorButton(
                                 text: '5',
-                                backgroundColor: Color(0xFF303030),
+                                backgroundColor: const Color(0xFF303030),
                                 textColor: Colors.white,
+                                onPressed: () {
+                                  calculatorController.input('5');
+                                },
                               ),
                               CalculatorButton(
                                 text: '6',
-                                backgroundColor: Color(0xFF303030),
+                                backgroundColor: const Color(0xFF303030),
                                 textColor: Colors.white,
+                                onPressed: () {
+                                  calculatorController.input('6');
+                                },
                               ),
                               CalculatorButton(
                                 text: '−',
-                                backgroundColor: Color(0xFFFD6500),
+                                backgroundColor: const Color(0xFFFD6500),
                                 textColor: Colors.white,
+                                onPressed: () {
+                                  calculatorController.input('-');
+                                },
                               ),
                             ],
                           ),
                         ),
                         // Baris Keempat
                         Padding(
-                          padding: EdgeInsets.only(
+                          padding: const EdgeInsets.only(
                             bottom: 12.0,
                           ),
                           child: Row(
@@ -175,30 +221,42 @@ class CalculatorPage extends StatelessWidget {
                             children: [
                               CalculatorButton(
                                 text: '7',
-                                backgroundColor: Color(0xFF303030),
+                                backgroundColor: const Color(0xFF303030),
                                 textColor: Colors.white,
+                                onPressed: () {
+                                  calculatorController.input('7');
+                                },
                               ),
                               CalculatorButton(
                                 text: '8',
-                                backgroundColor: Color(0xFF303030),
+                                backgroundColor: const Color(0xFF303030),
                                 textColor: Colors.white,
+                                onPressed: () {
+                                  calculatorController.input('8');
+                                },
                               ),
                               CalculatorButton(
                                 text: '9',
-                                backgroundColor: Color(0xFF303030),
+                                backgroundColor: const Color(0xFF303030),
                                 textColor: Colors.white,
+                                onPressed: () {
+                                  calculatorController.input('9');
+                                },
                               ),
                               CalculatorButton(
                                 text: '+',
-                                backgroundColor: Color(0xFFFD6500),
+                                backgroundColor: const Color(0xFFFD6500),
                                 textColor: Colors.white,
+                                onPressed: () {
+                                  calculatorController.input('+');
+                                },
                               ),
                             ],
                           ),
                         ),
                         // Baris Kelima
                         Padding(
-                          padding: EdgeInsets.only(
+                          padding: const EdgeInsets.only(
                             bottom: 12.0,
                           ),
                           child: Row(
@@ -207,19 +265,28 @@ class CalculatorPage extends StatelessWidget {
                             children: [
                               CalculatorButton(
                                 text: '0',
-                                backgroundColor: Color(0xFF303030),
+                                backgroundColor: const Color(0xFF303030),
                                 textColor: Colors.white,
                                 flex: true,
+                                onPressed: () {
+                                  calculatorController.input('0');
+                                },
                               ),
                               CalculatorButton(
                                 text: '.',
-                                backgroundColor: Color(0xFF303030),
+                                backgroundColor: const Color(0xFF303030),
                                 textColor: Colors.white,
+                                onPressed: () {
+                                  calculatorController.input('.');
+                                },
                               ),
                               CalculatorButton(
                                 text: '=',
-                                backgroundColor: Color(0xFFFFBB00),
+                                backgroundColor: const Color(0xFFFFBB00),
                                 textColor: Colors.white,
+                                onPressed: () {
+                                  calculatorController.input('=');
+                                },
                               ),
                             ],
                           ),
