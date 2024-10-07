@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:overshare2/features/news/screens/news_home.dart';
+import 'package:overshare2/features/authentication/login/screens/login.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
@@ -67,7 +67,7 @@ class LandingPage extends StatelessWidget {
                               backgroundColor:
                                   WidgetStatePropertyAll(Color(0xFFF76D00))),
                           onPressed: () {
-                            Get.to(const NewsHome());
+                            Get.to(const LoginPage());
                           },
                           child: Text(
                             "Get Started",

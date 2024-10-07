@@ -14,8 +14,11 @@ class UserRepository extends GetxController {
         .collection('users')
         .add(user.toJson())
         .whenComplete(() =>
+            // ignore: avoid_print
             print('USER REPOSITORY - berasil memasukkan data ke database'))
+        // ignore: body_might_complete_normally_catch_error
         .catchError((error, stackTrace) {
+      // ignore: avoid_print
       print(error.toString());
     });
   }
