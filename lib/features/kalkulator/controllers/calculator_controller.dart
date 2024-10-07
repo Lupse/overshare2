@@ -32,26 +32,22 @@ class CalculatorController extends GetxController {
     if (_operator.isEmpty || _input.isEmpty) {
       return;
     }
-    
-    num_2 = double.tryParse(_input.split(_operator)[1]) ?? 0;
-    double calculationResult = 0;
+
+    num_2 = double.tryParse(_input) ?? 0;
 
     if (_operator == '+') {
-      calculationResult = num_1 + num_2;
+      num_1 += num_2;
     } else if (_operator == '-') {
-      calculationResult = num_1 - num_2;
+      num_1 -= num_2;
     } else if (_operator == '*') {
-      calculationResult = num_1 * num_2;
+      num_1 *= num_2;
     } else if (_operator == '/') {
-      calculationResult = (num_2 != 0) ? num_1 / num_2 : double.nan;
+      num_1 = (num_2 != 0) ? num_1 / num_2 : double.nan;
     }
 
-    result.value = calculationResult.toString();
-
-    //keep the result
-    num_1 = calculationResult;
-
-    //clear everything after calculate
+    //update result
+    result.value = num_1.toString();
+    //clear input for next entry
     _input = '';
     userInput.value = '';
   }
@@ -74,14 +70,15 @@ class CalculatorController extends GetxController {
 
   //method set operator
   void setOperator(String operator) {
-    if (_input.isEmpty) return;
-
-    num_1 = double.tryParse(_input) ?? 0;
+    if (_input.isNotEmpty) {
+      //store current number di num_1
+      num_1 = double.tryParse(_input) ?? 0;
+      result.value = num_1.toString();
+    }
     _operator = operator;
-
-    //menambahkan angka setelah  operator
-    _input += operator;
-    userInput.value += operator;
+    _input = '';
+    //munculin operator di layar
+    userInput.value = operator;
   }
 
   void backspace() {
