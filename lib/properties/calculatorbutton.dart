@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 class CalculatorButton extends StatelessWidget {
   final Color backgroundColor;
   final Color textColor;
+  final Color? iconColor;
   final String text;
   final bool flex;
   final bool useIcon;
@@ -14,6 +15,7 @@ class CalculatorButton extends StatelessWidget {
       {super.key,
       required this.backgroundColor,
       required this.textColor,
+      this.iconColor,
       this.flex = false,
       this.useIcon = false,
       this.icons,
@@ -55,14 +57,15 @@ class CalculatorButton extends StatelessWidget {
                 child: useIcon
                     ? Icon(
                         icons,
-                        color: Colors.black,
+                        color: iconColor,
+                        weight: 1000,
                       )
                     : Text(
                         text,
-                        style: GoogleFonts.josefinSans(
-                            color: textColor,
-                            fontSize: 31,
-                            fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                          color: textColor,
+                          fontSize: 34,
+                        ),
                       )),
           );
   }

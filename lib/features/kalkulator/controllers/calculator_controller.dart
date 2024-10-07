@@ -15,7 +15,7 @@ class CalculatorController extends GetxController {
       cleanNumber();
     } else if (value == '=') {
       calculate();
-    } else if (value == '+' || value == '-' || value == '*' || value == '/') {
+    } else if (value == '+' || value == '-' || value == 'x' || value == '/') {
       setOperator(value);
     } else if (value == 'backspace') {
       backspace();
@@ -39,7 +39,7 @@ class CalculatorController extends GetxController {
       num_1 += num_2;
     } else if (_operator == '-') {
       num_1 -= num_2;
-    } else if (_operator == '*') {
+    } else if (_operator == 'x') {
       num_1 *= num_2;
     } else if (_operator == '/') {
       num_1 = (num_2 != 0) ? num_1 / num_2 : double.nan;
@@ -78,7 +78,7 @@ class CalculatorController extends GetxController {
     _operator = operator;
     _input = '';
     //munculin operator di layar
-    userInput.value = operator;
+    userInput.value = '';
   }
 
   void backspace() {

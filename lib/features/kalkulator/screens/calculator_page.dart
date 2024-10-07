@@ -6,9 +6,23 @@ import 'package:overshare2/features/kalkulator/controllers/calculator_controller
 import 'package:overshare2/properties/calculatorbutton.dart';
 import 'package:overshare2/properties/appbars.dart';
 
-class CalculatorPage extends StatelessWidget {
+class CalculatorPage extends StatefulWidget {
+  const CalculatorPage({super.key});
+
+  @override
+  State<CalculatorPage> createState() => _CalculatorPageState();
+}
+
+class _CalculatorPageState extends State<CalculatorPage> {
   final CalculatorController calculatorController = Get.find();
-  CalculatorPage({super.key});
+
+  bool button1 = false;
+
+  bool button2 = false;
+
+  bool button3 = false;
+
+  bool button4 = false;
 
   @override
   Widget build(BuildContext context) {
@@ -33,11 +47,17 @@ class CalculatorPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     //calculator display
-                    Obx(
-                      () => Text(
-                        calculatorController.userInput.value,
-                        style: GoogleFonts.josefinSans(
-                            color: const Color(0xFFFD6500), fontSize: 54.56),
+                    SizedBox(
+                      width: 400,
+                      child: Obx(
+                        () => Text(
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                          calculatorController.userInput.value,
+                          textAlign: TextAlign.end,
+                          style: GoogleFonts.josefinSans(
+                              color: const Color(0xFFFD6500), fontSize: 54.56),
+                        ),
                       ),
                     ),
 
@@ -90,11 +110,18 @@ class CalculatorPage extends StatelessWidget {
                                 backgroundColor: const Color(0xFF830404),
                                 textColor: Colors.white,
                                 onPressed: () {
+                                  setState(() {
+                                    button1 = false;
+                                    button2 = false;
+                                    button3 = false;
+                                    button4 = false;
+                                  });
                                   calculatorController.input('C');
                                 },
                               ),
                               CalculatorButton(
                                 icons: Icons.backspace_outlined,
+                                iconColor: Colors.black,
                                 useIcon: true,
                                 text: '',
                                 backgroundColor: const Color(0xFFB4B1B1),
@@ -112,13 +139,23 @@ class CalculatorPage extends StatelessWidget {
                                 },
                               ),
                               CalculatorButton(
-                                text: '/',
-                                backgroundColor: const Color(0xFFFD6500),
-                                textColor: Colors.white,
+                                text: '÷',
+                                backgroundColor: button1
+                                    ? Colors.white
+                                    : const Color(0xFFFD6500),
+                                textColor: button1
+                                    ? const Color(0xFFFD6500)
+                                    : Colors.white,
                                 onPressed: () {
+                                  setState(() {
+                                    button1 = !button1;
+                                    button2 = false;
+                                    button3 = false;
+                                    button4 = false;
+                                  });
                                   calculatorController.input('/');
                                 },
-                              ),
+                              )
                             ],
                           ),
                         ),
@@ -156,11 +193,21 @@ class CalculatorPage extends StatelessWidget {
                                 },
                               ),
                               CalculatorButton(
-                                text: 'X',
-                                backgroundColor: const Color(0xFFFD6500),
-                                textColor: Colors.white,
+                                text: 'x',
+                                backgroundColor: button2
+                                    ? Colors.white
+                                    : const Color(0xFFFD6500),
+                                textColor: button2
+                                    ? const Color(0xFFFD6500)
+                                    : Colors.white,
                                 onPressed: () {
-                                  calculatorController.input('*');
+                                  setState(() {
+                                    button1 = false;
+                                    button2 = !button2;
+                                    button3 = false;
+                                    button4 = false;
+                                  });
+                                  calculatorController.input('x');
                                 },
                               ),
                             ],
@@ -201,9 +248,19 @@ class CalculatorPage extends StatelessWidget {
                               ),
                               CalculatorButton(
                                 text: '−',
-                                backgroundColor: const Color(0xFFFD6500),
-                                textColor: Colors.white,
+                                backgroundColor: button3
+                                    ? Colors.white
+                                    : const Color(0xFFFD6500),
+                                textColor: button3
+                                    ? const Color(0xFFFD6500)
+                                    : Colors.white,
                                 onPressed: () {
+                                  setState(() {
+                                    button1 = false;
+                                    button2 = false;
+                                    button3 = !button3;
+                                    button4 = false;
+                                  });
                                   calculatorController.input('-');
                                 },
                               ),
@@ -245,9 +302,19 @@ class CalculatorPage extends StatelessWidget {
                               ),
                               CalculatorButton(
                                 text: '+',
-                                backgroundColor: const Color(0xFFFD6500),
-                                textColor: Colors.white,
+                                backgroundColor: button4
+                                    ? Colors.white
+                                    : const Color(0xFFFD6500),
+                                textColor: button4
+                                    ? const Color(0xFFFD6500)
+                                    : Colors.white,
                                 onPressed: () {
+                                  setState(() {
+                                    button1 = false;
+                                    button2 = false;
+                                    button3 = false;
+                                    button4 = !button4;
+                                  });
                                   calculatorController.input('+');
                                 },
                               ),
@@ -285,6 +352,12 @@ class CalculatorPage extends StatelessWidget {
                                 backgroundColor: const Color(0xFFFFBB00),
                                 textColor: Colors.white,
                                 onPressed: () {
+                                  setState(() {
+                                    button1 = false;
+                                    button2 = false;
+                                    button3 = false;
+                                    button4 = false;
+                                  });
                                   calculatorController.input('=');
                                 },
                               ),

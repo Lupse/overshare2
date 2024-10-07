@@ -114,80 +114,83 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
                     },
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    // Left Button
-                    started == 1
-                        ? SizedBox(
-                            width: 82,
-                            height: 82,
-                            child: ElevatedButton(
-                                style: const ButtonStyle(
-                                    backgroundColor: WidgetStatePropertyAll(
-                                        Color(0xFF303030))),
-                                onPressed: () {
-                                  // Call the lap method to save the lap
-                                  if (started == 1 || started == 2) {
-                                    lap(); // Save lap time if running
-                                  }
-                                },
-                                child: Text(
-                                  'Lap',
-                                  style: GoogleFonts.josefinSans(
-                                    color: Colors.white,
-                                    fontSize: 13,
-                                  ),
-                                )),
-                          )
-                        : SizedBox(
-                            width: 82,
-                            height: 82,
-                            child: ElevatedButton(
-                                style: const ButtonStyle(
-                                    backgroundColor: WidgetStatePropertyAll(
-                                  Color.fromARGB(226, 72, 63, 8),
-                                )),
-                                onPressed: () {
-                                  reset();
-                                },
-                                child: Text(
-                                  'Reset',
-                                  style: GoogleFonts.josefinSans(
-                                    color: Colors.white,
-                                    fontSize: 13,
-                                  ),
-                                )),
-                          ),
-                    // Right Button
-                    SizedBox(
-                      width: 82,
-                      height: 82,
-                      child: ElevatedButton(
-                          style: ButtonStyle(
-                              backgroundColor: WidgetStatePropertyAll(
-                            started == 1
-                                ? const Color.fromARGB(229, 72, 8, 8)
-                                : const Color.fromARGB(228, 25, 72, 8),
-                          )),
-                          onPressed: () {
-                            setState(() {
-                              if (started == 0) {
-                                start();
-                              } else {
-                                stop();
-                              }
-                            });
-                          },
-                          child: Text(
-                            started == 1 ? 'Stop' : 'Start',
-                            style: GoogleFonts.josefinSans(
-                              color: Colors.white,
-                              fontSize: 13,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // Left Button
+                      started == 1
+                          ? SizedBox(
+                              width: 82,
+                              height: 82,
+                              child: ElevatedButton(
+                                  style: const ButtonStyle(
+                                      backgroundColor: WidgetStatePropertyAll(
+                                          Color(0xFF303030))),
+                                  onPressed: () {
+                                    // Call the lap method to save the lap
+                                    if (started == 1 || started == 2) {
+                                      lap(); // Save lap time if running
+                                    }
+                                  },
+                                  child: Text(
+                                    'Lap',
+                                    style: GoogleFonts.josefinSans(
+                                      color: Colors.white,
+                                      fontSize: 13,
+                                    ),
+                                  )),
+                            )
+                          : SizedBox(
+                              width: 82,
+                              height: 82,
+                              child: ElevatedButton(
+                                  style: const ButtonStyle(
+                                      backgroundColor: WidgetStatePropertyAll(
+                                    Color.fromARGB(226, 72, 63, 8),
+                                  )),
+                                  onPressed: () {
+                                    reset();
+                                  },
+                                  child: Text(
+                                    'Reset',
+                                    style: GoogleFonts.josefinSans(
+                                      color: Colors.white,
+                                      fontSize: 13,
+                                    ),
+                                  )),
                             ),
-                          )),
-                    )
-                  ],
+                      // Right Button
+                      SizedBox(
+                        width: 82,
+                        height: 82,
+                        child: ElevatedButton(
+                            style: ButtonStyle(
+                                backgroundColor: WidgetStatePropertyAll(
+                              started == 1
+                                  ? const Color.fromARGB(229, 72, 8, 8)
+                                  : const Color.fromARGB(228, 25, 72, 8),
+                            )),
+                            onPressed: () {
+                              setState(() {
+                                if (started == 0) {
+                                  start();
+                                } else {
+                                  stop();
+                                }
+                              });
+                            },
+                            child: Text(
+                              started == 1 ? 'Stop' : 'Start',
+                              style: GoogleFonts.josefinSans(
+                                color: Colors.white,
+                                fontSize: 13,
+                              ),
+                            )),
+                      )
+                    ],
+                  ),
                 ),
                 //Lap
                 SizedBox(

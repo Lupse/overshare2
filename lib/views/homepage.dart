@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:overshare2/features/kalkulator/screens/calculator_page.dart';
 import 'package:overshare2/features/news/screens/news_home.dart';
 import 'package:overshare2/features/profile/user_profile/controllers/user_profile_controller.dart';
+import 'package:overshare2/features/stopwatch/stopwatch_screen.dart';
 import 'package:overshare2/properties/appbars.dart';
 import 'package:overshare2/repositories/authentication/authentication_repository.dart';
 import 'package:overshare2/views/aboutus.dart';
@@ -337,6 +338,68 @@ class Homepage extends StatelessWidget {
                                     },
                                     child: Text(
                                       'See Whats Happening',
+                                      style: GoogleFonts.josefinSans(
+                                          textStyle: const TextStyle(
+                                              fontSize: 12,
+                                              color: Colors.white)),
+                                    )))
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20.0, bottom: 20),
+                  child: SizedBox(
+                    width: 350,
+                    height: 152,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(width: 0.5, color: Colors.white54),
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(10))),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 20.0, horizontal: 20),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Calculator',
+                              style: GoogleFonts.josefinSans(
+                                  fontSize: 23,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            Text(
+                              "See detail information about the developer of the Overshare App",
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.josefinSans(
+                                fontSize: 12,
+                                color: Colors.white,
+                              ),
+                            ),
+                            SizedBox(
+                                width: double.infinity,
+                                height: 32,
+                                child: TextButton(
+                                    style: const ButtonStyle(
+                                        shape: WidgetStatePropertyAll(
+                                            RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.horizontal(
+                                                        left: Radius.circular(
+                                                            15.5),
+                                                        right: Radius.circular(
+                                                            15.5)))),
+                                        backgroundColor: WidgetStatePropertyAll(
+                                            Color(0xFFF76D00))),
+                                    onPressed: () {
+                                      Get.to(const StopwatchScreen());
+                                    },
+                                    child: Text(
+                                      'Countdown!',
                                       style: GoogleFonts.josefinSans(
                                           textStyle: const TextStyle(
                                               fontSize: 12,
