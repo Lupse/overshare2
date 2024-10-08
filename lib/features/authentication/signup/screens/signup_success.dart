@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:overshare2/features/authentication/signup/controllers/phone_number_controller.dart';
 import 'package:overshare2/features/authentication/signup/controllers/signup_controller.dart';
 import 'package:overshare2/features/authentication/signup/models/signup_model.dart';
-import 'package:overshare2/views/homepage.dart';
+import 'package:overshare2/views/homepage/landing.dart';
 
 class SignupSuccess extends StatefulWidget {
   const SignupSuccess({super.key});

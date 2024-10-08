@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:overshare2/features/authentication/login/screens/login.dart';
-import 'package:overshare2/features/authentication/login/screens/login.dart';
-import 'package:overshare2/features/stopwatch/stopwatch_screen.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});

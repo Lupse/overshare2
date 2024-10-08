@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:overshare2/features/authentication/signup/screens/signup_success.dart';
 import 'package:overshare2/properties/snackbar.dart';
 import 'package:overshare2/repositories/authentication/exception/signup_exception.dart';
-import 'package:overshare2/views/homepage.dart';
+import 'package:overshare2/views/homepage/landing.dart';
 import 'package:overshare2/views/landing_page.dart';
 
 class AuthenticationRepository extends GetxController {

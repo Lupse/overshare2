@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:overshare2/features/news/screens/favorite_screen.dart';
 import 'package:overshare2/features/news/screens/news_screen.dart';
 import 'package:overshare2/properties/appbars.dart';
@@ -31,87 +32,107 @@ class _NewsHomeState extends State<NewsHome> {
               backgroundColor: Color(0xFF151515),
               leading: true,
             )),
-        bottomNavigationBar: SizedBox(
-          height: 60,
-          child: Row(
-            children: [
-              Expanded(
-                child: InkWell(
-                  splashColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                  onTap: () {
-                    setState(() {
-                      _pageController.animateToPage(0,
-                          duration: const Duration(milliseconds: 200),
-                          curve: Curves.easeIn);
-                    });
-                  },
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
+        floatingActionButton: Padding(
+          padding: const EdgeInsets.only(right: 15.0),
+          child: Container(
+            width: 349,
+            height: 48,
+            decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(59)),
+                color: Color(0xFF131313)),
+            child: Stack(children: [
+              _selectedPage == 0
+                  ? Positioned.fill(
+                      right: 169,
+                      child: Container(
+                        width: 179,
+                        decoration: const BoxDecoration(
+                            color: Color(0xFFF76D00),
                             borderRadius:
-                                const BorderRadius.all(Radius.circular(30)),
-                            color: _selectedPage == 0
-                                ? const Color.fromARGB(255, 102, 104, 104)
-                                : const Color.fromARGB(0, 5, 57, 47)),
-                        child: const Icon(
-                          Icons.newspaper,
-                          color: Colors.white,
-                          size: 28,
+                                BorderRadius.all(Radius.circular(59))),
+                      ),
+                    )
+                  : Positioned.fill(
+                      left: 169,
+                      child: Container(
+                        width: 179,
+                        decoration: const BoxDecoration(
+                            color: Color(0xFFF76D00),
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(59))),
+                      ),
+                    ),
+              // Bottom Navbar
+              Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // Homepage button
+                    Expanded(
+                        child: InkWell(
+                      borderRadius: const BorderRadius.all(Radius.circular(59)),
+                      splashColor: Colors.transparent,
+                      onTap: () {
+                        setState(() {
+                          _pageController.animateToPage(0,
+                              duration: const Duration(milliseconds: 200),
+                              curve: Curves.easeIn);
+                        });
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            Icons.newspaper,
+                            color: Colors.white,
+                          ),
+                          const SizedBox(
+                            width: 12,
+                          ),
+                          Text(
+                            'News',
+                            style: GoogleFonts.josefinSans(
+                                color: Colors.white, fontSize: 14),
+                          ),
+                        ],
+                      ),
+                    )),
+                    // About Button
+                    Expanded(
+                      child: InkWell(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(59)),
+                        splashColor: Colors.transparent,
+                        onTap: () {
+                          setState(() {
+                            _pageController.animateToPage(1,
+                                duration: const Duration(milliseconds: 200),
+                                curve: Curves.easeIn);
+                          });
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(
+                              Icons.favorite,
+                              color: Colors.white,
+                            ),
+                            const SizedBox(
+                              width: 12,
+                            ),
+                            Text(
+                              'Favorite',
+                              style: GoogleFonts.josefinSans(
+                                  color: Colors.white, fontSize: 14),
+                            ),
+                          ],
                         ),
                       ),
-                      const Text(
-                        'News',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ],
-                  ),
+                    )
+                  ],
                 ),
               ),
-              Expanded(
-                child: InkWell(
-                  splashColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                  onTap: () {
-                    setState(() {
-                      _pageController.animateToPage(1,
-                          duration: const Duration(milliseconds: 200),
-                          curve: Curves.easeIn);
-                    });
-                  },
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(30)),
-                            color: _selectedPage == 1
-                                ? const Color.fromARGB(255, 102, 104, 104)
-                                : const Color.fromARGB(0, 5, 57, 47)),
-                        child: Icon(
-                          _selectedPage == 1
-                              ? Icons.favorite
-                              : Icons.favorite_outline,
-                          color: Colors.white,
-                          size: 28,
-                        ),
-                      ),
-                      const Text(
-                        'Favorite',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
+            ]),
           ),
         ),
         body: PageView(
