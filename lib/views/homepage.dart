@@ -151,7 +151,7 @@ class Homepage extends StatelessWidget {
                             child: IconButton(
                                 color: Colors.white,
                                 onPressed: () {
-                                  Get.to(CalculatorPage());
+                                  Get.to(const CalculatorPage());
                                 },
                                 icon: const Icon(Icons.arrow_forward)),
                           ),
@@ -366,7 +366,7 @@ class Homepage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              'Calculator',
+                              'StopWatch',
                               style: GoogleFonts.josefinSans(
                                   fontSize: 23,
                                   color: Colors.white,
