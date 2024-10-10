@@ -25,6 +25,8 @@ class AuthenticationRepository extends GetxController {
     ever(firebaseUser, _setInitialScreen);
   }
 
+  String? get userId => firebaseUser.value?.uid;
+
   _setInitialScreen(User? user) {
     user == null
         ? Get.to(() => const LandingPage())
@@ -38,6 +40,7 @@ class AuthenticationRepository extends GetxController {
       isLoading.value = true;
       await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
+
       firebaseUser.value != null
           ? Get.offAll(() => const SignupSuccess())
           : Get.to(() => const LandingPage());
