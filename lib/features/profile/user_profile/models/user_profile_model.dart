@@ -28,11 +28,22 @@
 
 class UserProfileModel {
   final String username;
+  final String password;
+  final String phoneNumber;
+  final String email;
 
-  UserProfileModel({required this.username});
+  UserProfileModel(
+      {required this.username,
+      required this.password,
+      required this.email,
+      required this.phoneNumber});
 
   factory UserProfileModel.fromJson(Map<String, dynamic> json) {
-    return UserProfileModel(username: json['username']);
+    return UserProfileModel(
+        username: json['username'],
+        password: json['password'],
+        email: json['email'],
+        phoneNumber: json['phone_number']);
   }
 
   // factory UserModel.fromJson(Map<String, dynamic> json) {

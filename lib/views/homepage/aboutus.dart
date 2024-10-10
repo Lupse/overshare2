@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:overshare2/properties/appbars.dart';
 
 class AboutUs extends StatelessWidget {
   const AboutUs({super.key});
@@ -9,13 +8,6 @@ class AboutUs extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF151515),
-      appBar: const PreferredSize(
-          preferredSize: Size(double.infinity, 60),
-          child: MyAppBar(
-            backgroundColor: Color(0xFF151515),
-            leading: true,
-            withLeading: true,
-          )),
       body: SingleChildScrollView(
         child: Column(
           children: [

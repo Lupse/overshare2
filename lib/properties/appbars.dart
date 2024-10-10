@@ -1,21 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:overshare2/features/profile/user_profile/profile_scree.dart';
 
 class MyAppBar extends StatelessWidget {
   final Color backgroundColor;
   final bool leading;
   final bool withLeading;
+  final bool? profileLeading;
 
   const MyAppBar(
       {required this.backgroundColor,
       super.key,
       required this.leading,
-      required this.withLeading});
+      required this.withLeading,
+      this.profileLeading = false});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      automaticallyImplyLeading: leading,
+      leading: profileLeading!
+          ? IconButton(
+              onPressed: () {
+                Get.to(const ProfilePage());
+              },
+              icon: const Icon(Icons.person))
+          : null,
       elevation: 0,
       iconTheme: const IconThemeData(color: Colors.white),
       centerTitle: true,
