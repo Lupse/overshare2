@@ -6,9 +6,11 @@ import 'package:overshare2/features/kalkulator/screens/calculator_page.dart';
 import 'package:overshare2/features/news/models/news_list.dart';
 import 'package:overshare2/features/news/screens/news_home.dart';
 import 'package:overshare2/features/profile/user_profile/controllers/user_profile_controller.dart';
+import 'package:overshare2/features/profile/user_profile/profile_scree.dart';
 import 'package:overshare2/features/stopwatch/stopwatch_screen.dart';
 import 'package:overshare2/properties/button.dart';
 import 'package:overshare2/repositories/authentication/authentication_repository.dart';
+import 'package:overshare2/views/homepage/aboutapp.dart';
 import 'package:overshare2/views/homepage/aboutus.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -20,58 +22,96 @@ class HomeScreen extends StatelessWidget {
 
     // Fetch the user profile based on the logged-in user's email
     profileController.fetchUserProfileByEmail();
+    var screenWidth = MediaQuery.of(context).size.width;
     return SingleChildScrollView(
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            padding: EdgeInsets.all(screenWidth * 0.011),
             child: Column(children: [
               // Username & Logout
               Row(
                 children: [
-                  SizedBox(
-                      width: 110,
-                      child: Obx(() {
-                        if (profileController.isLoading.value) {
-                          return const Center(
-                              child: CircularProgressIndicator());
-                        } else if (profileController.profile.value != null) {
-                          return Text(
-                            'Hello, ${profileController.profile.value!.username}',
-                            style: GoogleFonts.josefinSans(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w400),
-                          );
-                        } else {
-                          return const Text('User not found');
-                        }
-                      })),
-                  const Expanded(
-                    child: Divider(
-                      indent: 12,
-                      endIndent: 42,
-                    ),
-                  ),
-                  TextButton(
-                    style: const ButtonStyle(
-                        backgroundColor:
-                            WidgetStatePropertyAll(Color(0xFFA50000))),
-                    onPressed: () {
-                      AuthenticationRepository.instance.logoutUser();
-                    },
-                    child: Text(
-                      "Logout",
-                      style: GoogleFonts.josefinSans(
-                          color: Colors.white,
-                          fontSize: 13,
-                          fontWeight: FontWeight.w400),
-                    ),
+                  const CircleAvatar(),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 12.0),
+                        child: SizedBox(
+                          width: screenWidth * 0.8,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                      width: 110,
+                                      child: Obx(() {
+                                        if (profileController.isLoading.value) {
+                                          return const Center(
+                                              child:
+                                                  CircularProgressIndicator());
+                                        } else if (profileController
+                                                .profile.value !=
+                                            null) {
+                                          return Text(
+                                            'Hello, ${profileController.profile.value!.username}',
+                                            style: GoogleFonts.josefinSans(
+                                                color: Colors.white,
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.w400),
+                                          );
+                                        } else {
+                                          return const Text('User not found');
+                                        }
+                                      })),
+                                  Text(
+                                    'What you like gonna do, today?',
+                                    style: GoogleFonts.josefinSans(
+                                        color: Colors.white,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400),
+                                  )
+                                ],
+                              ),
+                              SizedBox(
+                                width: 75,
+                                height: 23,
+                                child: TextButton(
+                                  style: const ButtonStyle(
+                                      padding: WidgetStatePropertyAll(
+                                          EdgeInsets.all(4)),
+                                      backgroundColor: WidgetStatePropertyAll(
+                                          Color(0xFFF87300))),
+                                  onPressed: () {
+                                    Get.to(const ProfilePage());
+                                  },
+                                  child: Text(
+                                    "See Profile",
+                                    style: GoogleFonts.josefinSans(
+                                        color: Colors.white,
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w400),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
 
-              // 2 card
+              // HR
+              const Divider(
+                thickness: 0.2,
+              ),
+
+              // card
               Padding(
                 padding: const EdgeInsets.only(top: 20.0),
                 child: Row(

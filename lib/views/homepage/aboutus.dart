@@ -7,6 +7,8 @@ class AboutUs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: const PreferredSize(
           preferredSize: Size(double.infinity, 60),
@@ -17,12 +19,17 @@ class AboutUs extends StatelessWidget {
           )),
       backgroundColor: const Color(0xFF151515),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            _luthfiProfile(),
-            _dejanProfile(),
-            const Image(image: AssetImage('assets/aboutus/asset1.png'))
-          ],
+        child: Padding(
+          padding: EdgeInsets.all(screenWidth * 0.001),
+          child: SizedBox(
+            child: Column(
+              children: [
+                _luthfiProfile(),
+                _dejanProfile(),
+                const Image(image: AssetImage('assets/aboutus/asset1.png'))
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -30,7 +37,9 @@ class AboutUs extends StatelessWidget {
 
   Widget _luthfiProfile() {
     return Padding(
-      padding: const EdgeInsets.only(top: 60, left: 10, right: 10),
+      padding: const EdgeInsets.only(
+        top: 60,
+      ),
       child: Row(
         children: [
           SizedBox(
@@ -148,7 +157,9 @@ class AboutUs extends StatelessWidget {
 
   Widget _dejanProfile() {
     return Padding(
-      padding: const EdgeInsets.only(top: 60, left: 10, right: 10),
+      padding: const EdgeInsets.only(
+        top: 60,
+      ),
       child: Row(
         children: [
           SizedBox(
