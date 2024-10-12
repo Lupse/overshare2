@@ -7,6 +7,7 @@ class MyTextFormField extends StatefulWidget {
   final TextEditingController? myController;
   final FormFieldValidator<String>? validator;
   final FocusNode? focusNode;
+  final String? initialValue;
   const MyTextFormField({
     super.key,
     required this.text,
@@ -14,6 +15,7 @@ class MyTextFormField extends StatefulWidget {
     this.myController,
     this.validator,
     this.focusNode,
+    this.initialValue,
   });
 
   @override
@@ -29,6 +31,7 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
       width: 388,
       height: 61,
       child: TextFormField(
+          initialValue: widget.initialValue,
           focusNode: widget.focusNode,
           validator: widget.validator,
           controller: widget.myController,

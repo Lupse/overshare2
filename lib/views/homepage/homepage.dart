@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:overshare2/features/kalkulator/screens/calculator_page.dart';
 import 'package:overshare2/features/news/models/news_list.dart';
-import 'package:overshare2/features/news/screens/news_home.dart';
+import 'package:overshare2/features/oddeven/oddeven_screen.dart';
 import 'package:overshare2/features/profile/user_profile/controllers/user_profile_controller.dart';
-import 'package:overshare2/features/profile/user_profile/profile_scree.dart';
+import 'package:overshare2/features/profile/user_profile/profile_screen.dart';
 import 'package:overshare2/features/stopwatch/stopwatch_screen.dart';
-import 'package:overshare2/properties/button.dart';
-import 'package:overshare2/repositories/authentication/authentication_repository.dart';
-import 'package:overshare2/views/homepage/aboutapp.dart';
 import 'package:overshare2/views/homepage/aboutus.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -196,7 +192,9 @@ class HomeScreen extends StatelessWidget {
                             WidgetStateProperty.all(Colors.transparent),
                         splashFactory: NoSplash.splashFactory,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.to(const OddevenScreen());
+                      },
                       child: SizedBox(
                         width: 164,
                         height: 218,
