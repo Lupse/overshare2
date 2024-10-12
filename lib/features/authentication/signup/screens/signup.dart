@@ -29,8 +29,8 @@ class Signup extends StatelessWidget {
               preferredSize: Size(double.infinity, 60),
               child: MyAppBar(
                   backgroundColor: Color(0xFF151515),
-                  leading: false,
-                  withLeading: false)),
+                  leading: true,
+                  withLeading: true)),
           body: Stack(
             children: [
               Form(
@@ -45,7 +45,7 @@ class Signup extends StatelessWidget {
                       children: [
                         // Title
                         Padding(
-                          padding: const EdgeInsets.only(top: 60.0),
+                          padding: const EdgeInsets.only(top: 20.0),
                           child: Text(
                             "Sign Up",
                             style: GoogleFonts.josefinSans(
@@ -60,7 +60,7 @@ class Signup extends StatelessWidget {
 
                         // Text
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 80.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 50.0),
                           child: Text(
                             "Register your account to use our special features",
                             textAlign: TextAlign.center,
@@ -215,41 +215,44 @@ class Signup extends StatelessWidget {
                         ),
 
                         // Redirect to login
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 17.0, right: 8),
-                              child: Text(
-                                "Already Have an Account?",
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.josefinSans(
-                                  textStyle: const TextStyle(
-                                    fontSize: 15,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 18.0),
-                              child: InkWell(
-                                onTap: () {
-                                  Get.to(const LoginPage());
-                                },
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 20.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 17.0, right: 8),
                                 child: Text(
-                                  'Log In',
+                                  "Already Have an Account?",
+                                  textAlign: TextAlign.center,
                                   style: GoogleFonts.josefinSans(
-                                    color: const Color(0xFFF07A00),
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w700,
+                                    textStyle: const TextStyle(
+                                      fontSize: 15,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
                               ),
-                            )
-                          ],
+                              Padding(
+                                padding: const EdgeInsets.only(top: 18.0),
+                                child: InkWell(
+                                  onTap: () {
+                                    Get.to(const LoginPage());
+                                  },
+                                  child: Text(
+                                    'Log In',
+                                    style: GoogleFonts.josefinSans(
+                                      color: const Color(0xFFF07A00),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ],
                     ),

@@ -86,7 +86,7 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
               children: [
                 // Time Screen
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 52.0),
+                  padding: const EdgeInsets.symmetric(vertical: 22.0),
                   child: StreamBuilder<int>(
                     stream: _stopWatchTimer.rawTime,
                     initialData: 0,
@@ -128,7 +128,7 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
                       style: GoogleFonts.josefinSans(
                           color: Colors.white, fontSize: 18),
                     ),
-                    Divider(),
+                    const Divider(),
                     SizedBox(
                       width: double.infinity,
                       height: 340,

@@ -302,7 +302,7 @@ class HomeScreen extends StatelessWidget {
                                   ),
                                   const Divider(
                                     thickness: 7,
-                                    endIndent: 310,
+                                    endIndent: 290,
                                   )
                                 ],
                               ),

@@ -49,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                       // Title
                       Padding(
-                        padding: const EdgeInsets.only(top: 60.0),
+                        padding: const EdgeInsets.only(top: 30.0),
                         child: Text(
                           "Login",
                           style: GoogleFonts.josefinSans(
@@ -64,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
 
                       // Text
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 80.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 50.0),
                         child: Text(
                           "To use our features you must be login first",
                           textAlign: TextAlign.center,

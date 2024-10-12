@@ -58,122 +58,126 @@ class _OddevenScreenState extends State<OddevenScreen> {
             backgroundColor: Color(0xFF151515),
             leading: true,
           )),
-      body: SizedBox(
-        width: double.infinity,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const SizedBox(height: 60),
-            Text(
-              'Odd/Even',
-              style: GoogleFonts.josefinSans(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400),
-            ),
-            Text(
-              'Determine each number either it’s odd or even',
-              style: GoogleFonts.josefinSans(
-                  color: Colors.white,
-                  fontSize: 15,
-                  fontWeight: FontWeight.w400),
-            ),
-            const SizedBox(height: 80),
-            Text(
-              'Your Number :',
-              style: GoogleFonts.josefinSans(
-                  color: Colors.white,
-                  fontSize: 15,
-                  fontWeight: FontWeight.w400),
-            ),
-
-            // Input Field
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 28.0),
-              child: TextField(
-                onEditingComplete: () {
-                  check();
-                },
-                controller: input,
-                textAlign: TextAlign.center,
-                keyboardType: TextInputType.number,
-                cursorColor: Colors.white,
-                style: const TextStyle(color: Colors.white),
-                decoration: const InputDecoration(focusColor: Colors.white),
+      body: SingleChildScrollView(
+        child: SizedBox(
+          width: double.infinity,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              const SizedBox(height: 60),
+              Text(
+                'Odd/Even',
+                style: GoogleFonts.josefinSans(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w400),
               ),
-            ),
+              Text(
+                'Determine each number either it’s odd or even',
+                style: GoogleFonts.josefinSans(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400),
+              ),
+              const SizedBox(height: 80),
+              Text(
+                'Your Number :',
+                style: GoogleFonts.josefinSans(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400),
+              ),
 
-            const SizedBox(height: 10),
+              // Input Field
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 28.0),
+                child: TextField(
+                  onEditingComplete: () {
+                    check();
+                  },
+                  controller: input,
+                  textAlign: TextAlign.center,
+                  keyboardType: TextInputType.number,
+                  cursorColor: Colors.white,
+                  style: const TextStyle(color: Colors.white),
+                  decoration: const InputDecoration(focusColor: Colors.white),
+                ),
+              ),
 
-            // Error Handling
-            Text(
-              text,
-              style: GoogleFonts.josefinSans(
-                  color: Colors.red, fontSize: 15, fontWeight: FontWeight.w400),
-            ),
+              const SizedBox(height: 10),
 
-            const SizedBox(height: 50),
-            // Result
-            Text(
-              'The Result :',
-              style: GoogleFonts.josefinSans(
-                  color: Colors.white,
-                  fontSize: 15,
-                  fontWeight: FontWeight.w400),
-            ),
-            const SizedBox(height: 20),
-            SizedBox(
-              height: 200,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  // Odd Circle
-                  AnimatedContainer(
-                    width: odd ? 200 : 126,
-                    height: odd ? 200 : 126,
-                    duration: const Duration(seconds: 1),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: odd
-                          ? const Color(0xFF007808)
-                          : const Color(0xff303030),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Odd',
-                        style: GoogleFonts.josefinSans(
-                            color: Colors.white,
-                            fontSize: 29,
-                            fontWeight: FontWeight.w400),
+              // Error Handling
+              Text(
+                text,
+                style: GoogleFonts.josefinSans(
+                    color: Colors.red,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400),
+              ),
+
+              const SizedBox(height: 50),
+              // Result
+              Text(
+                'The Result :',
+                style: GoogleFonts.josefinSans(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w400),
+              ),
+              const SizedBox(height: 20),
+              SizedBox(
+                height: 200,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // Odd Circle
+                    AnimatedContainer(
+                      width: odd ? 200 : 126,
+                      height: odd ? 200 : 126,
+                      duration: const Duration(seconds: 1),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: odd
+                            ? const Color(0xFF007808)
+                            : const Color(0xff303030),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Odd',
+                          style: GoogleFonts.josefinSans(
+                              color: Colors.white,
+                              fontSize: 29,
+                              fontWeight: FontWeight.w400),
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(width: 20),
-                  // Even Circle
-                  AnimatedContainer(
-                    width: even ? 200 : 126,
-                    height: even ? 200 : 126,
-                    duration: const Duration(seconds: 1),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: even
-                          ? const Color(0xFF007808)
-                          : const Color(0xff303030),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Even',
-                        style: GoogleFonts.josefinSans(
-                            color: Colors.white,
-                            fontSize: 29,
-                            fontWeight: FontWeight.w400),
+                    const SizedBox(width: 20),
+                    // Even Circle
+                    AnimatedContainer(
+                      width: even ? 200 : 126,
+                      height: even ? 200 : 126,
+                      duration: const Duration(seconds: 1),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: even
+                            ? const Color(0xFF007808)
+                            : const Color(0xff303030),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Even',
+                          style: GoogleFonts.josefinSans(
+                              color: Colors.white,
+                              fontSize: 29,
+                              fontWeight: FontWeight.w400),
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            )
-          ],
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
