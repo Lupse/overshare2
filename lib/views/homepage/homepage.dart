@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:overshare2/features/kalkulator/screens/calculator_page.dart';
+import 'package:overshare2/features/news/controllers/favourite_controller.dart';
 import 'package:overshare2/features/news/models/news_list.dart';
 import 'package:overshare2/features/oddeven/oddeven_screen.dart';
 import 'package:overshare2/features/profile/user_profile/controllers/user_profile_controller.dart';
@@ -15,6 +16,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ProfileController profileController = Get.put(ProfileController());
+    final FavouriteController favouriteController = Get.find();
 
     // Fetch the user profile based on the logged-in user's email
     profileController.fetchUserProfileByEmail();
@@ -368,138 +370,193 @@ class HomeScreen extends StatelessWidget {
                     thickness: 0.2,
                   ),
                 ),
+
                 // News ListView Builder
                 SizedBox(
-                  height: 173,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
-                    itemCount: newsList.length,
-                    itemBuilder: (context, index) {
-                      News berita = newsList[index];
-                      return Padding(
-                        padding: const EdgeInsets.only(left: 12.0),
-                        child: SizedBox(
-                            width: 133,
-                            height: 173,
-                            child: Card(
-                              child: Stack(children: [
-                                // Background
-                                Image(image: AssetImage(berita.imageAsset)),
-                                Container(
-                                  decoration: const BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(12)),
-                                      gradient: LinearGradient(colors: [
-                                        Colors.transparent,
-                                        Color(0xff2B2828),
-                                        Color(0xff2B2828)
-                                      ], transform: GradientRotation(20.5))),
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    // Icon
-                                    const Row(
-                                      children: [
-                                        Spacer(),
-                                        Padding(
-                                          padding: EdgeInsets.all(8.0),
-                                          child: Icon(
-                                            Icons.favorite,
-                                            color: Colors.red,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-
-                                    // Logo
-                                    Row(
-                                      children: [
-                                        const Spacer(),
-                                        SizedBox(
-                                          width: 40,
-                                          height: 40,
-                                          child: Image(
-                                              image: AssetImage(
-                                                  berita.imageAsset)),
-                                        ),
-                                        const Spacer(),
-                                      ],
-                                    ),
-
-                                    // Text
-                                    Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 12.0),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            berita.name,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: GoogleFonts.josefinSans(
-                                                fontSize: 10,
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          const SizedBox(height: 4),
-                                          Text(
-                                            maxLines: 4,
-                                            overflow: TextOverflow.ellipsis,
-                                            berita.description,
-                                            style: GoogleFonts.josefinSans(
-                                              fontSize: 7,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-
-                                    // Button
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 8.0, right: 8.0, top: 4),
-                                      child: Row(
-                                        children: [
-                                          const Spacer(),
-                                          SizedBox(
-                                            width: 55,
-                                            height: 15,
-                                            child: ElevatedButton(
-                                                style: const ButtonStyle(
-                                                  padding:
-                                                      WidgetStatePropertyAll(
-                                                          EdgeInsets.all(3)),
-                                                  backgroundColor:
-                                                      WidgetStatePropertyAll(
-                                                          Color(0xFFF87300)),
-                                                  foregroundColor:
-                                                      WidgetStatePropertyAll(
-                                                          Colors.white),
-                                                ),
-                                                onPressed: () {},
-                                                child: Text(
-                                                  'Read Now!',
-                                                  style:
-                                                      GoogleFonts.josefinSans(
-                                                    fontSize: 7,
-                                                    color: Colors.white,
-                                                  ),
-                                                )),
-                                          )
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ]),
-                            )),
+                  height: 195,
+                  child: Obx(() {
+                    if (favouriteController.isLoading.value) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
                       );
-                    },
-                  ),
+                    } else if (favouriteController.favouritedNews.isEmpty) {
+                      return const Center(
+                        child: Text("No favourited news yet!"),
+                      );
+                    } else {
+                      return ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        shrinkWrap: true,
+                        itemCount: favouriteController.favouritedNews.length,
+                        itemBuilder: (context, index) {
+                          final berita =
+                              favouriteController.favouritedNews[index];
+                          return Padding(
+                            padding: const EdgeInsets.only(left: 12.0),
+                            child: SizedBox(
+                                width: 133,
+                                height: 173,
+                                child: Card(
+                                  child: Stack(children: [
+                                    // Background
+                                    Image(image: AssetImage(berita.imageAsset)),
+                                    Container(
+                                      decoration: const BoxDecoration(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(12)),
+                                          gradient: LinearGradient(
+                                              colors: [
+                                                Colors.transparent,
+                                                Color(0xff2B2828),
+                                                Color(0xff2B2828)
+                                              ],
+                                              transform:
+                                                  GradientRotation(20.5))),
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        // Icon
+                                        Row(
+                                          children: [
+                                            const Spacer(),
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Obx(() {
+                                                return IconButton(
+                                                    onPressed: () {
+                                                      if (favouriteController
+                                                          .isFavourite(
+                                                              berita)) {
+                                                        favouriteController
+                                                            .removeFavourite(
+                                                                berita);
+                                                      } else {
+                                                        favouriteController
+                                                            .addFavourite(
+                                                                berita);
+                                                      }
+                                                    },
+                                                    icon: favouriteController
+                                                            .isFavourite(berita)
+                                                        ? const Icon(
+                                                            Icons.favorite,
+                                                            color:
+                                                                Color.fromARGB(
+                                                                    255,
+                                                                    243,
+                                                                    29,
+                                                                    29),
+                                                          )
+                                                        : const Icon(
+                                                            Icons
+                                                                .favorite_border_outlined,
+                                                            color:
+                                                                Color.fromARGB(
+                                                                    97,
+                                                                    255,
+                                                                    255,
+                                                                    255),
+                                                          ));
+                                              }),
+                                            ),
+                                          ],
+                                        ),
+
+                                        // Logo
+                                        Row(
+                                          children: [
+                                            const Spacer(),
+                                            SizedBox(
+                                              width: 40,
+                                              height: 40,
+                                              child: Image(
+                                                  image: AssetImage(
+                                                      berita.imageAsset)),
+                                            ),
+                                            const Spacer(),
+                                          ],
+                                        ),
+
+                                        // Text
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 12.0),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                berita.name,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: GoogleFonts.josefinSans(
+                                                    fontSize: 10,
+                                                    color: Colors.white,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                              const SizedBox(height: 4),
+                                              Text(
+                                                maxLines: 4,
+                                                overflow: TextOverflow.ellipsis,
+                                                berita.description,
+                                                style: GoogleFonts.josefinSans(
+                                                  fontSize: 7,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+
+                                        // Button
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 8.0, right: 8.0, top: 4),
+                                          child: Row(
+                                            children: [
+                                              const Spacer(),
+                                              SizedBox(
+                                                width: 55,
+                                                height: 15,
+                                                child: ElevatedButton(
+                                                    style: const ButtonStyle(
+                                                      padding:
+                                                          WidgetStatePropertyAll(
+                                                              EdgeInsets.all(
+                                                                  3)),
+                                                      backgroundColor:
+                                                          WidgetStatePropertyAll(
+                                                              Color(
+                                                                  0xFFF87300)),
+                                                      foregroundColor:
+                                                          WidgetStatePropertyAll(
+                                                              Colors.white),
+                                                    ),
+                                                    onPressed: () {},
+                                                    child: Text(
+                                                      'Read Now!',
+                                                      style: GoogleFonts
+                                                          .josefinSans(
+                                                        fontSize: 7,
+                                                        color: Colors.white,
+                                                      ),
+                                                    )),
+                                              )
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ]),
+                                )),
+                          );
+                        },
+                      );
+                    }
+                  }),
                 )
               ],
             ),
@@ -540,7 +597,7 @@ class HomeScreen extends StatelessWidget {
                           horizontal: 12.0, vertical: 4),
                       child: SizedBox(
                         width: 349,
-                        height: 175,
+                        height: 190,
                         child: Card(
                           child: Stack(
                             children: [
@@ -600,16 +657,47 @@ class HomeScreen extends StatelessWidget {
                                         ],
                                       ),
                                     ),
-                                    // Button
+
+                                    // favoutire Button
                                     Padding(
                                       padding: const EdgeInsets.only(
-                                          left: 8.0, right: 8.0, top: 4),
+                                        left: 8.0,
+                                        right: 8.0,
+                                        top: 4,
+                                      ),
                                       child: Row(
                                         children: [
-                                          const Icon(
-                                            Icons.favorite,
-                                            color: Colors.red,
+                                          //icon favourite
+                                          Obx(
+                                            () => IconButton(
+                                                onPressed: () {
+                                                  if (favouriteController
+                                                      .isFavourite(berita)) {
+                                                    favouriteController
+                                                        .removeFavourite(
+                                                            berita);
+                                                  } else {
+                                                    favouriteController
+                                                        .addFavourite(berita);
+                                                  }
+                                                },
+                                                icon: favouriteController
+                                                        .isFavourite(berita)
+                                                    ? const Icon(
+                                                        Icons.favorite,
+                                                        color: Color.fromARGB(
+                                                            255, 243, 29, 29),
+                                                      )
+                                                    : const Icon(
+                                                        Icons
+                                                            .favorite_border_outlined,
+                                                        color: Color.fromARGB(
+                                                            97,
+                                                            255,
+                                                            255,
+                                                            255))),
                                           ),
+
                                           Expanded(
                                             child: Padding(
                                               padding:
@@ -704,7 +792,7 @@ class HomeScreen extends StatelessWidget {
                                   backgroundColor: WidgetStatePropertyAll(
                                       Color(0xFFF76D00))),
                               onPressed: () {
-                                Get.to(const AboutUs());
+                                Get.to(() => const AboutUs());
                               },
                               child: Text(
                                 'See the details',

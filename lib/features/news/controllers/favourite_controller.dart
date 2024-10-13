@@ -13,20 +13,19 @@ class FavouriteController extends GetxController {
 
   @override
   void onReady() {
+    fetchFavouritedNews();
     super.onReady();
-    loadFavourites();
   }
-  //static (tanpa firebase)
-  // var toggleFavourite = <News>[].obs;
 
-  Future<void> loadFavourites() async {
+  Future<void> fetchFavouritedNews() async {
     try {
       isLoading.value = true;
-      var favourites = await favouriteRepository
-          .getAllFavourites(authenticationRepository.userId.toString());
-      favouritedNews.assignAll(favourites);
+      var fetchedNews = await favouriteRepository.fetchFavouritedNews();
+      if (fetchedNews.isNotEmpty) {
+        favouritedNews.assignAll(fetchedNews);
+      } else {}
     } catch (e) {
-      print('ERROR LOAD DATA!: $e');
+      throw Exception("ERROR FETCHING DATA (favourite controller) : $e");
     } finally {
       isLoading.value = false;
     }
@@ -52,10 +51,6 @@ class FavouriteController extends GetxController {
     // if (toggleFavourite.contains(news)) {
     //   toggleFavourite.remove(news);
     // }
-  }
-
-  Stream<List<News>> getFavouriteNews() {
-    return favouriteRepository.getFavouriteProduct();
   }
 
   //cek udah favourite atau belum
