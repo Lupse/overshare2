@@ -42,4 +42,4 @@ flutter:
     - "assets/props/success_snapbar.png"
     - "assets/props/error_snapbar.png"
     - "assets/props/error.png"
-    - "assets/"
+    - "assets/news/"

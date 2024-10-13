@@ -18,95 +18,59 @@ class FavoriteScreen extends StatelessWidget {
         style: GoogleFonts.josefinSans(fontSize: 36, color: Colors.white),
       ),
 
-      //stream data
-      StreamBuilder(
-          stream: favouriteController.getFavouriteNews(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
+      //body
 
-            if (!snapshot.hasData || snapshot.data!.isEmpty) {
-              return Center(
-                  child: Text(
-                'No Favourite News Yet!',
-                style:
-                    GoogleFonts.josefinSans(fontSize: 16, color: Colors.white),
-              ));
-            }
+      Obx(() {
+        if (favouriteController.isLoading.value) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
 
-            //display favourite news
-            return GridView.builder(
-              shrinkWrap: true,
-              itemCount: snapshot.data!.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, childAspectRatio: 0.7),
-              itemBuilder: (context, index) {
-                //ngambil list dummy data
-                final News news = snapshot.data![index];
-                //card widget
-                return Card(
-                    margin: const EdgeInsets.all(8.0),
-                    child: InkWell(
-                      //pindah ke detail screen
-                      onTap: () {
-                        Get.to(NewsScreenDetail(news: news));
-                      },
-                      child: Card(
-                        child: Column(
-                          children: [
-                            SizedBox(
-                                width: double.infinity,
-                                height: 150,
-                                child:
-                                    Image(image: AssetImage(news.imageAsset))),
-                            Text(
-                              news.name,
-                              style: const TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold),
-                            ),
-                            // Favorite toggle Button
-                            // FutureBuilder(
-                            //     future:
-                            //         favouriteController.checkFavourite(news),
-                            //     builder: (contex, snapshot) {
-                            //       if (!snapshot.hasData) {
-                            //         return const Center(
-                            //           child: CircularProgressIndicator(),
-                            //         );
-                            //       }
-                            //       final isFavourited = snapshot.data!;
-                            //       return IconButton(
-                            //           onPressed: () {
-                            //             if (isFavourited) {
-                            //               favouriteController
-                            //                   .removeFavourite(news);
-                            //             } else {
-                            //               favouriteController
-                            //                   .addFavourite(news);
-                            //             }
-                            //           },
-                            //           icon: isFavourited
-                            //               ? const Icon(
-                            //                   Icons.favorite,
-                            //                   color: Color.fromARGB(
-                            //                       255, 243, 29, 29),
-                            //                 )
-                            //               : const Icon(
-                            //                   Icons.favorite_border_outlined,
-                            //                   color:
-                            //                       Color.fromARGB(98, 0, 0, 0),
-                            //                 ));
-                            //     })
-                          ],
+        if (favouriteController.favouritedNews.isEmpty) {
+          return Center(
+            child: Text(
+              'No Favourited Item Yet!',
+              style: GoogleFonts.josefinSans(fontSize: 16, color: Colors.white),
+            ),
+          );
+        }
+
+        return GridView.builder(
+          shrinkWrap: true,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2, childAspectRatio: 0.7),
+          itemCount: favouriteController.favouritedNews.length,
+          itemBuilder: (context, index) {
+            //ngambil list dummy data
+            News news = favouriteController.favouritedNews[index];
+            //card widget
+            return Card(
+                margin: const EdgeInsets.all(8.0),
+                child: InkWell(
+                  //pindah ke detail screen
+                  onTap: () {
+                    Get.to(NewsScreenDetail(news: news));
+                  },
+                  child: Card(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                            width: double.infinity,
+                            height: 150,
+                            child: Image(image: AssetImage(news.imageAsset))),
+                        Text(
+                          news.name,
+                          style: const TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
                         ),
-                      ),
-                    ));
-              },
-            );
-          })
+                      ],
+                    ),
+                  ),
+                ));
+          },
+        );
+      })
     ]);
   }
 }

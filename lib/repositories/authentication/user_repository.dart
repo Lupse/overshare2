@@ -25,7 +25,7 @@ class UserRepository extends GetxController {
               .doc(authenticationRepository.userId)
               .collection('favourites')
               .add({
-            'initialized': true,
+            'initialized': false,
           });
         })
         .whenComplete(() =>

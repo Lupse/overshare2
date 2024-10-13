@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:overshare2/properties/appbars.dart';
 import 'package:overshare2/views/homepage/aboutapp.dart';
-import 'package:overshare2/views/homepage/aboutus.dart';
 import 'package:overshare2/views/homepage/homepage.dart';
 
 class Homepage extends StatefulWidget {
