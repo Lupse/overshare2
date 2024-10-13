@@ -35,7 +35,7 @@ class Snackbar extends GetxController {
                   width: 97,
                 ),
                 SizedBox(
-                  width: 235,
+                  width: 230,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 4.5),
                     child: Column(
@@ -96,7 +96,7 @@ class Snackbar extends GetxController {
                   width: 97,
                 ),
                 SizedBox(
-                  width: 235,
+                  width: 230,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 4.5),
                     child: Column(

@@ -16,9 +16,11 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
   int started = 0;
   bool returnButton = false;
   int? time;
+  bool show = false;
 
   void start() {
     setState(() {
+      show = true;
       started = 1;
       _stopWatchTimer.onStartTimer();
       _stopWatchTimer.secondTime.listen((value) => time = value);
@@ -35,6 +37,7 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
 
   void reset() {
     setState(() {
+      show = false;
       started = 0;
       _stopWatchTimer.onResetTimer();
       returnButton = !returnButton;
@@ -81,8 +84,9 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
             child: Column(
               children: [
+                // Time Screen
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 82.0),
+                  padding: const EdgeInsets.symmetric(vertical: 22.0),
                   child: StreamBuilder<int>(
                     stream: _stopWatchTimer.rawTime,
                     initialData: 0,
@@ -114,64 +118,99 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
                     },
                   ),
                 ),
+
+                //Lap
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Time Records',
+                      style: GoogleFonts.josefinSans(
+                          color: Colors.white, fontSize: 18),
+                    ),
+                    const Divider(),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 340,
+                      child: ListView.builder(
+                        itemCount: laps.length,
+                        itemBuilder: (context, index) {
+                          return SizedBox(
+                            height: 72,
+                            child: Column(
+                              children: [
+                                ListTile(
+                                  title: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        'Lap ${index + 1}',
+                                        style: GoogleFonts.josefinSans(
+                                            color: Colors.white, fontSize: 18),
+                                      ),
+                                      Text(
+                                        laps[index],
+                                        style: GoogleFonts.josefinSans(
+                                            color: Colors.white, fontSize: 18),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const Divider(
+                                  thickness: 0.2,
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+
+                // Button
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12.0),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       // Left Button
-                      started == 1
+                      show
                           ? SizedBox(
-                              width: 82,
-                              height: 82,
-                              child: ElevatedButton(
-                                  style: const ButtonStyle(
-                                      backgroundColor: WidgetStatePropertyAll(
-                                          Color(0xFF303030))),
-                                  onPressed: () {
-                                    // Call the lap method to save the lap
-                                    if (started == 1 || started == 2) {
-                                      lap(); // Save lap time if running
-                                    }
-                                  },
-                                  child: Text(
-                                    'Lap',
-                                    style: GoogleFonts.josefinSans(
-                                      color: Colors.white,
-                                      fontSize: 13,
-                                    ),
-                                  )),
+                              width: 61,
+                              height: 61,
+                              child: IconButton(
+                                style: const ButtonStyle(
+                                    backgroundColor: WidgetStatePropertyAll(
+                                  Color(0xff303030),
+                                )),
+                                onPressed: () {
+                                  reset();
+                                },
+                                icon: const Icon(
+                                  Icons.restart_alt_sharp,
+                                  color: Colors.white,
+                                ),
+                              ),
                             )
-                          : SizedBox(
-                              width: 82,
-                              height: 82,
-                              child: ElevatedButton(
-                                  style: const ButtonStyle(
-                                      backgroundColor: WidgetStatePropertyAll(
-                                    Color.fromARGB(226, 72, 63, 8),
-                                  )),
-                                  onPressed: () {
-                                    reset();
-                                  },
-                                  child: Text(
-                                    'Reset',
-                                    style: GoogleFonts.josefinSans(
-                                      color: Colors.white,
-                                      fontSize: 13,
-                                    ),
-                                  )),
+                          : const SizedBox(
+                              width: 61,
+                              height: 61,
                             ),
-                      // Right Button
-                      SizedBox(
-                        width: 82,
-                        height: 82,
-                        child: ElevatedButton(
-                            style: ButtonStyle(
-                                backgroundColor: WidgetStatePropertyAll(
-                              started == 1
-                                  ? const Color.fromARGB(229, 72, 8, 8)
-                                  : const Color.fromARGB(228, 25, 72, 8),
-                            )),
+
+                      // Mid Button
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 12.0, right: 12, top: 22),
+                        child: SizedBox(
+                          width: 92,
+                          height: 92,
+                          child: IconButton(
+                            style: const ButtonStyle(
+                                backgroundColor:
+                                    WidgetStatePropertyAll(Color(0xffF07A00))),
                             onPressed: () {
                               setState(() {
                                 if (started == 0) {
@@ -181,53 +220,47 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
                                 }
                               });
                             },
-                            child: Text(
-                              started == 1 ? 'Stop' : 'Start',
-                              style: GoogleFonts.josefinSans(
-                                color: Colors.white,
-                                fontSize: 13,
-                              ),
-                            )),
-                      )
-                    ],
-                  ),
-                ),
-                //Lap
-                SizedBox(
-                  width: double.infinity,
-                  height: 360,
-                  child: ListView.builder(
-                    itemCount: laps.length,
-                    itemBuilder: (context, index) {
-                      return SizedBox(
-                        height: 72,
-                        child: Column(
-                          children: [
-                            const Divider(
-                              thickness: 0.2,
-                            ),
-                            ListTile(
-                              title: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    'Lap ${index + 1}',
-                                    style: GoogleFonts.josefinSans(
-                                        color: Colors.white, fontSize: 18),
+                            icon: started == 1
+                                ? const Icon(
+                                    Icons.pause,
+                                    color: Colors.white,
+                                    size: 60,
+                                  )
+                                : const Icon(
+                                    Icons.play_arrow,
+                                    color: Colors.white,
+                                    size: 60,
                                   ),
-                                  Text(
-                                    laps[index],
-                                    style: GoogleFonts.josefinSans(
-                                        color: Colors.white, fontSize: 18),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
-                      );
-                    },
+                      ),
+
+                      // Right Button
+                      show
+                          ? SizedBox(
+                              width: 61,
+                              height: 61,
+                              child: IconButton(
+                                style: const ButtonStyle(
+                                    backgroundColor: WidgetStatePropertyAll(
+                                        Color(0xFF303030))),
+                                onPressed: () {
+                                  // Call the lap method to save the lap
+                                  if (started == 1 || started == 2) {
+                                    lap(); // Save lap time if running
+                                  }
+                                },
+                                icon: const Icon(
+                                  Icons.timer,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            )
+                          : const SizedBox(
+                              width: 61,
+                              height: 61,
+                            ),
+                    ],
                   ),
                 ),
               ],

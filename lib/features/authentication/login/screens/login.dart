@@ -10,9 +10,14 @@ import 'package:overshare2/properties/text_form_field.dart';
 import 'package:overshare2/features/authentication/signup/screens/signup.dart';
 import 'package:overshare2/repositories/authentication/authentication_repository.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final LoginController loginController = Get.find();
@@ -26,9 +31,9 @@ class LoginPage extends StatelessWidget {
         appBar: const PreferredSize(
           preferredSize: Size(double.infinity, 60),
           child: MyAppBar(
-              withLeading: false,
+              withLeading: true,
               backgroundColor: Color(0xFF151515),
-              leading: false),
+              leading: true),
         ),
         body: Stack(
           children: [
@@ -44,7 +49,7 @@ class LoginPage extends StatelessWidget {
                     children: [
                       // Title
                       Padding(
-                        padding: const EdgeInsets.only(top: 60.0),
+                        padding: const EdgeInsets.only(top: 30.0),
                         child: Text(
                           "Login",
                           style: GoogleFonts.josefinSans(
@@ -59,7 +64,7 @@ class LoginPage extends StatelessWidget {
 
                       // Text
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 80.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 50.0),
                         child: Text(
                           "To use our features you must be login first",
                           textAlign: TextAlign.center,

@@ -25,7 +25,7 @@ class LandingPage extends StatelessWidget {
               backgroundBlendMode: BlendMode.colorBurn),
         )),
         Padding(
-          padding: const EdgeInsets.only(top: 350.0),
+          padding: const EdgeInsets.only(top: 300.0),
           child: Container(
             decoration: const BoxDecoration(
                 color: Color(0xFF151515),

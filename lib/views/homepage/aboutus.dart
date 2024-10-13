@@ -1,20 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:overshare2/properties/appbars.dart';
 
 class AboutUs extends StatelessWidget {
   const AboutUs({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
+      appBar: const PreferredSize(
+          preferredSize: Size(double.infinity, 60),
+          child: MyAppBar(
+            withLeading: true,
+            backgroundColor: Color(0xFF151515),
+            leading: true,
+          )),
       backgroundColor: const Color(0xFF151515),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            _luthfiProfile(),
-            _dejanProfile(),
-            const Image(image: AssetImage('assets/aboutus/asset1.png'))
-          ],
+        child: Padding(
+          padding: EdgeInsets.all(screenWidth * 0.001),
+          child: SizedBox(
+            child: Column(
+              children: [
+                _luthfiProfile(),
+                _dejanProfile(),
+                const Image(image: AssetImage('assets/aboutus/asset1.png'))
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -22,7 +37,9 @@ class AboutUs extends StatelessWidget {
 
   Widget _luthfiProfile() {
     return Padding(
-      padding: const EdgeInsets.only(top: 60, left: 10, right: 10),
+      padding: const EdgeInsets.only(
+        top: 60,
+      ),
       child: Row(
         children: [
           SizedBox(
@@ -140,7 +157,9 @@ class AboutUs extends StatelessWidget {
 
   Widget _dejanProfile() {
     return Padding(
-      padding: const EdgeInsets.only(top: 60, left: 10, right: 10),
+      padding: const EdgeInsets.only(
+        top: 60,
+      ),
       child: Row(
         children: [
           SizedBox(
