@@ -16,7 +16,7 @@ class News {
 
 var newsList = [
   News(
-    name: 'TechCrunch',
+    name: 'TechCrunch1',
     url: 'https://techcrunch.com',
     description:
         'TechCrunch delivers the latest news on startups, gadgets, and technology trends.',
@@ -24,7 +24,7 @@ var newsList = [
     id: '1',
   ),
   News(
-    name: 'TechCrunch',
+    name: 'TechCrunch2',
     url: 'https://techcrunch.com',
     description:
         'TechCrunch delivers the latest news on startups, gadgets, and technology trends.',
@@ -32,7 +32,7 @@ var newsList = [
     id: '2',
   ),
   News(
-    name: 'TechCrunch',
+    name: 'TechCrunch3',
     url: 'https://techcrunch.com',
     description:
         'TechCrunch delivers the latest news on startups, gadgets, and technology trends.',
@@ -40,7 +40,7 @@ var newsList = [
     id: '3',
   ),
   News(
-    name: 'TechCrunch',
+    name: 'TechCrunch4',
     url: 'https://techcrunch.com',
     description:
         'TechCrunch delivers the latest news on startups, gadgets, and technology trends.',

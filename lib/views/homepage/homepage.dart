@@ -138,7 +138,7 @@ class HomeScreen extends StatelessWidget {
                           child: IconButton(
                               color: Colors.white,
                               onPressed: () {
-                                Get.to(const CalculatorPage());
+                                Get.to(() => const CalculatorPage());
                               },
                               icon: const Icon(Icons.arrow_forward)),
                         ),
@@ -254,7 +254,7 @@ class HomeScreen extends StatelessWidget {
                                       backgroundColor: WidgetStatePropertyAll(
                                           Color(0xFFF76D00))),
                                   onPressed: () {
-                                    Get.to(const NewsHome());
+                                    Get.to(() => const NewsHome());
                                   },
                                   child: Text(
                                     'See Whats Happening',
@@ -315,7 +315,7 @@ class HomeScreen extends StatelessWidget {
                                       backgroundColor: WidgetStatePropertyAll(
                                           Color(0xFFF76D00))),
                                   onPressed: () {
-                                    Get.to(const StopwatchScreen());
+                                    Get.to(() => const StopwatchScreen());
                                   },
                                   child: Text(
                                     'Countdown!',

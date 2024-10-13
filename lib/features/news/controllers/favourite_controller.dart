@@ -8,20 +8,28 @@ class FavouriteController extends GetxController {
   final AuthenticationRepository authenticationRepository = Get.find();
 
   //store list of favourites
-  RxList<News> favouritedNews = <News>[].obs;
+  var favouritedNews = <News>[].obs;
+  var isLoading = false.obs;
 
   @override
-  void onInit() {
+  void onReady() {
+    super.onReady();
     loadFavourites();
-    super.onInit();
   }
   //static (tanpa firebase)
   // var toggleFavourite = <News>[].obs;
 
   Future<void> loadFavourites() async {
-    final favourites = await favouriteRepository
-        .getAllFavourites(authenticationRepository.userId.toString());
-    favouritedNews.assignAll(favourites);
+    try {
+      isLoading.value = true;
+      var favourites = await favouriteRepository
+          .getAllFavourites(authenticationRepository.userId.toString());
+      favouritedNews.assignAll(favourites);
+    } catch (e) {
+      print('ERROR LOAD DATA!: $e');
+    } finally {
+      isLoading.value = false;
+    }
   }
 
   //add favourite
@@ -47,7 +55,7 @@ class FavouriteController extends GetxController {
   }
 
   Stream<List<News>> getFavouriteNews() {
-    return favouriteRepository.getFavourtiteProduct();
+    return favouriteRepository.getFavouriteProduct();
   }
 
   //cek udah favourite atau belum

@@ -143,9 +143,9 @@ class _NewsHomeState extends State<NewsHome> {
               });
             },
             scrollDirection: Axis.horizontal,
-            children: const [
+            children:  [
               NewsScreen(),
-              FavoriteScreen(),
+              const FavoriteScreen(),
             ]));
   }
 }

@@ -5,14 +5,9 @@ import 'package:overshare2/features/news/controllers/favourite_controller.dart';
 import 'package:overshare2/features/news/models/news_list.dart';
 import 'package:overshare2/features/news/screens/news_screen_detail.dart';
 
-class NewsScreen extends StatefulWidget {
-  const NewsScreen({super.key});
+class NewsScreen extends StatelessWidget {
+  NewsScreen({super.key});
 
-  @override
-  State<NewsScreen> createState() => _NewsScreenState();
-}
-
-class _NewsScreenState extends State<NewsScreen> {
   // indikator favorit
   final FavouriteController favouriteController = Get.find();
 
@@ -53,12 +48,14 @@ class _NewsScreenState extends State<NewsScreen> {
                             style: const TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.bold),
                           ),
+
+                          
                           // Favorite Button
                           Obx(() =>
                               // favouriteController.isFavourited.value =
                               //     snapshot.data!;
                               IconButton(
-                                onPressed: ()  {
+                                onPressed: () {
                                   if (favouriteController.isFavourite(news)) {
                                     favouriteController.removeFavourite(news);
                                   } else {

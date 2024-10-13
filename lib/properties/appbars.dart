@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:overshare2/features/profile/user_profile/profile_scree.dart';
+import 'package:overshare2/features/profile/user_profile/profile_screen.dart';
 
 class MyAppBar extends StatelessWidget {
   final Color backgroundColor;

@@ -8,21 +8,34 @@ class FavouriteRepository {
   final AuthenticationRepository authenticationRepository = Get.find();
 
   Future<List<News>> getAllFavourites(String userId) async {
-    final favouritesSnapshot = await userRepository.db
-        .collection('users')
-        .doc(userId)
-        .collection('favourites')
-        .get();
+    try {
+      final favouritesSnapshot = await userRepository.db
+          .collection('users')
+          .doc(userId)
+          .collection('favourites')
+          .get();
 
-    return favouritesSnapshot.docs.map((doc) {
-      return News(
-        id: doc.id,
-        name: doc['name'],
-        description: doc['description'],
-        imageAsset: doc['imageAsset'],
-        url: doc['url'],
-      );
-    }).toList();
+      return favouritesSnapshot.docs.map((doc) {
+        return News(
+          id: doc.id,
+          description: doc.data().containsKey('description')
+              ? doc['description']
+              : 'No description available', // Fallback if 'description' is missing
+          imageAsset: doc.data().containsKey('imageAsset')
+              ? doc['imageAsset']
+              : 'default_image.png', // Fallback to default image
+          name: doc.data().containsKey('name')
+              ? doc['name']
+              : 'Unknown Name', // Fallback if 'name' is missing
+          url: doc.data().containsKey('url')
+              ? doc['url']
+              : '', // Fallback if 'url' is missing
+        );
+      }).toList();
+    } catch (e) {
+      print('ERROR FETCHING DATA!: $e');
+      return [];
+    }
   }
 
   //add news to favourite page
@@ -51,7 +64,7 @@ class FavouriteRepository {
   }
 
   //get favourite news as stream
-  Stream<List<News>> getFavourtiteProduct() {
+  Stream<List<News>> getFavouriteProduct() {
     return userRepository.db
         .collection('users')
         .doc(authenticationRepository.userId)
@@ -60,11 +73,20 @@ class FavouriteRepository {
         .map((snapshot) {
       return snapshot.docs.map((doc) {
         return News(
-            id: doc.id,
-            name: doc['name'],
-            description: doc['description'],
-            imageAsset: doc['imageAsset'],
-            url: doc['url']);
+          id: doc.id,
+          description: doc.data().containsKey('description')
+              ? doc['description']
+              : 'No description available', // Fallback if 'description' is missing
+          imageAsset: doc.data().containsKey('imageAsset')
+              ? doc['imageAsset']
+              : 'default_image.png', // Fallback to default image
+          name: doc.data().containsKey('name')
+              ? doc['name']
+              : 'Unknown Name', // Fallback if 'name' is missing
+          url: doc.data().containsKey('url')
+              ? doc['url']
+              : '', // Fallback if 'url' is missing
+        );
       }).toList();
     });
   }
