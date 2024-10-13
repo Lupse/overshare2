@@ -39,73 +39,85 @@ var newsList = [
   News(
     id: '2',
     name: 'Where are we in the AI revolution? Robert Jack Will',
-    url: 'https://medium.com/@willitheowl/where-we-are-in-the-ai-revolution-fe448c4006da',
+    url:
+        'https://medium.com/@willitheowl/where-we-are-in-the-ai-revolution-fe448c4006da',
     description:
         '''ChatGPT was a wake-up call for society because everyone could experience what seemed like a big step on silicon’s long road from pocket calculators to taking over the world. Indeed, it is the culmination of decades of work on processing natural language with computers.''',
-    imageAsset: 'assets/ai_revolution.png',
+    imageAsset: 'assets/news/ai.png',
   ),
   News(
     id: '3',
-    name: 'Cybersecurity in 2024: Top Challenges',
-    url: 'https://example.com/cybersecurity-2024',
+    name: 'Biggest Cyber Security Challenges in 2024',
+    url:
+        'https://www.checkpoint.com/cyber-hub/cyber-security/what-is-cybersecurity/biggest-cyber-security-challenges-in-2024/',
     description:
-        'This article delves into the biggest cybersecurity challenges facing businesses in 2024.',
-    imageAsset: 'assets/cybersecurity.png',
+        '''2023 saw a rapidly evolving cybersecurity threat landscape. Cyberattacks are on the rise, existing attacks are changing, and new, more sophisticated threats are on the horizon. Going into 2024, these trends are likely to continue or — more likely — accelerate. As artificial intelligence (AI) matures, it promises to significantly impact how both cyber attackers and defenders do their jobs.''',
+    imageAsset: 'assets/news/cyber_security.png',
   ),
   News(
     id: '4',
-    name: 'Quantum Computing: A Game Changer for IT',
-    url: 'https://example.com/quantum-computing-it',
-    description: 'Quantum computing promises to revolutionize the IT industry.',
-    imageAsset: 'assets/quantum_computing.png',
+    name:
+        'Quantum Computing: A Game-Changer for the Information Technology Industry',
+    url:
+        'https://www.veridicsolutions.com/insights/quantum-computing-a-game-changer-for-the-information-technology-industry',
+    description:
+        '''In recent years, quantum computing has emerged as one of the most exciting and promising areas of research in the field of information technology. With the potential to revolutionize the way we approach computation, quantum computing represents a game-changing development that could have far-reaching implications for a wide range of industries.''',
+    imageAsset: 'assets/news/quantum.png',
   ),
   News(
     id: '5',
-    name: 'DevOps Best Practices for 2024',
-    url: 'https://example.com/devops-best-practices-2024',
+    name: '16 DevOps Best Practices Every Developer Should Know',
+    url: 'https://spacelift.io/blog/devops-best-practices',
     description:
-        'This article outlines the best DevOps practices for 2024, focusing on CI/CD and automation.',
-    imageAsset: 'assets/devops_best_practices.png',
+        '''Utilizing DevOps practices to maximize speed and value creation has been a hot topic in the software industry for the past decade. We have embraced these practices and changed how we work and think about development, operations, project management, code quality, observability, and continuous feedback.''',
+    imageAsset: 'assets/news/devops.png',
   ),
   // New entries
   News(
     id: '6',
-    name: 'Blockchain Beyond Cryptocurrency: The IT Impact',
-    url: 'https://example.com/blockchain-it-impact',
+    name:
+        'Blockchain Beyond Cryptocurrency: Exploring Its Impact on Modern Business Operations',
+    url: 'https://cioviews.com/blockchain-beyond-cryptocurrency/',
     description:
-        'This article explores the ways in which blockchain is improving security and transparency.',
-    imageAsset: 'assets/blockchain.png',
+        '''Blockchain technology, often associated with cryptocurrencies, extends far beyond digital currencies. At its core, blockchain is a decentralized, immutable ledger that records transactions across multiple computers. This technology’s potential to transform various industries lies in its ability to provide transparency, security, and efficiency.''',
+    imageAsset: 'assets/news/blockchain.png',
   ),
   News(
     id: '7',
-    name: 'The Role of 5G in Revolutionizing IT Infrastructure',
-    url: 'https://example.com/5g-it-infrastructure',
+    name:
+        'Unleashing the Power: How 5G Technology is Revolutionizing Industries',
+    url:
+        'https://media.inti.asia/read/unleashing-the-power-how-5g-technology-is-revolutionizing-industries',
     description:
-        '5G technology is set to revolutionize IT infrastructure by enabling faster data transmission.',
-    imageAsset: 'assets/5g.png',
+        '''INTI- In today's interconnected world, technology plays a pivotal role in shaping industries and driving innovation. One such technology that is transforming the landscape is 5G. With its lightning-fast speeds, ultra-low latency, and massive connectivity capabilities, 5G is poised to revolutionize various sectors, unlocking new opportunities and powering unprecedented advancements. From healthcare to manufacturing, transportation to entertainment, the impact of 5G technology is reshaping industries across the globe.''',
+    imageAsset: 'assets/news/5g.png',
   ),
   News(
     id: '8',
-    name: 'Remote Work Technology: Adapting IT for the Future',
-    url: 'https://example.com/remote-work-it',
+    name: 'The Future of Work: Embracing Remote Work Technology',
+    url:
+        'https://customerthink.com/the-future-of-work-embracing-remote-work-technology/',
     description:
-        'IT teams are adapting to provide secure and scalable solutions for remote work environments.',
-    imageAsset: 'assets/remote_work.png',
+        '''The dynamic nature of work has been significantly shifted due to advancements in technology, with the trend towards remote work becoming increasingly prevalent. Even before the COVID-19 era, the rise of remote work was apparent, facilitated by advancing technology and the increasing demand for flexible work options.''',
+    imageAsset: 'assets/news/future.png',
   ),
   News(
     id: '9',
-    name: 'The Rise of Low-Code Platforms in IT Development',
-    url: 'https://example.com/low-code-it-development',
+    name: 'The Total Economic Impact™ (TEI) of OutSystems ',
+    url:
+        'https://www.outsystems.com/1/low-code-roi-tei/?utm_source=google&utm_medium=search-ads&utm_campaign=GOOGLE_SEARCH_NB_APAC_SEA&utm_term=low%20code%20value&utm_adid=low_code_roi&utm_campaignteam=digital-mktg&utm_partner=none&gad_source=1&gclid=CjwKCAjw3624BhBAEiwAkxgTOsK29zfn7vVfqhwd4luGvZ2F_1O6JrRBCiUaoKFlMCa0eVBjHD70VBoCVRcQAvD_BwE',
     description:
-        'Low-code platforms are allowing non-developers to create apps and automate workflows.',
-    imageAsset: 'assets/low_code.png',
+        '''As the demand for applications continues to grow, organizations are looking for ways to modernize how they augment their teams to deliver innovative digital solutions faster and with high quality. Many organizations are using low-code development platforms to transform and accelerate their software delivery strategies.''',
+    imageAsset: 'assets/news/outsystem.png',
   ),
   News(
     id: '10',
-    name: 'Sustainability in IT: How Green Tech is Shaping the Future',
-    url: 'https://example.com/green-tech-it',
+    name:
+        'Sustainability in Tech: How Green Practices are Shaping the Industry',
+    url:
+        'https://www.ironhack.com/gb/blog/sustainability-in-tech-how-green-practices-are-shaping-the-industry-in-2024',
     description:
-        'Green technology is becoming a critical component of modern IT strategies to reduce carbon footprint.',
-    imageAsset: 'assets/green_tech.png',
+        '''Without a doubt, one of the biggest trends in tech in 2024 is sustainability and it’s evident across practically every area; as the world places an increasingly large importance on tech in every aspect of their life, such as banking, healthcare, and how they interact with others, we’re faced with a question: are we making truly sustainable choices? ''',
+    imageAsset: 'assets/news/ironhack.png',
   ),
 ];
