@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:overshare2/features/kalkulator/screens/calculator_page.dart';
 import 'package:overshare2/features/news/controllers/favourite_controller.dart';
 import 'package:overshare2/features/news/models/news_list.dart';
+import 'package:overshare2/features/news/screens/news_screen_detail.dart';
 import 'package:overshare2/features/oddeven/oddeven_screen.dart';
 import 'package:overshare2/features/profile/user_profile/controllers/user_profile_controller.dart';
 import 'package:overshare2/features/profile/user_profile/profile_screen.dart';
@@ -317,30 +318,27 @@ class HomeScreen extends StatelessWidget {
                   Positioned(
                     bottom: 0,
                     right: 0,
-                    child: Container(
-                        child: SizedBox(
-                            width: 100,
-                            height: 32,
-                            child: TextButton(
-                                style: const ButtonStyle(
-                                    shape: WidgetStatePropertyAll(
-                                        RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.horizontal(
-                                                    left: Radius.circular(15.5),
-                                                    right: Radius.circular(
-                                                        15.5)))),
-                                    backgroundColor: WidgetStatePropertyAll(
-                                        Color(0xFFF76D00))),
-                                onPressed: () {
-                                  Get.to(const StopwatchScreen());
-                                },
-                                child: Text(
-                                  'Try it now!',
-                                  style: GoogleFonts.josefinSans(
-                                      textStyle: const TextStyle(
-                                          fontSize: 12, color: Colors.white)),
-                                )))),
+                    child: SizedBox(
+                        width: 100,
+                        height: 32,
+                        child: TextButton(
+                            style: const ButtonStyle(
+                                shape: WidgetStatePropertyAll(
+                                    RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.horizontal(
+                                            left: Radius.circular(15.5),
+                                            right: Radius.circular(15.5)))),
+                                backgroundColor:
+                                    WidgetStatePropertyAll(Color(0xFFF76D00))),
+                            onPressed: () {
+                              Get.to(const StopwatchScreen());
+                            },
+                            child: Text(
+                              'Try it now!',
+                              style: GoogleFonts.josefinSans(
+                                  textStyle: const TextStyle(
+                                      fontSize: 12, color: Colors.white)),
+                            ))),
                   ),
                 ]),
               ),
@@ -402,7 +400,16 @@ class HomeScreen extends StatelessWidget {
                                 child: Card(
                                   child: Stack(children: [
                                     // Background
-                                    Image(image: AssetImage(berita.imageAsset)),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius: const BorderRadius.all(
+                                              Radius.circular(12)),
+                                          image: DecorationImage(
+                                            image:
+                                                AssetImage(berita.imageAsset),
+                                            fit: BoxFit.cover,
+                                          )),
+                                    ),
                                     Container(
                                       decoration: const BoxDecoration(
                                           borderRadius: BorderRadius.all(
@@ -477,7 +484,7 @@ class HomeScreen extends StatelessWidget {
                                               height: 40,
                                               child: Image(
                                                   image: AssetImage(
-                                                      berita.imageAsset)),
+                                                      berita.logoImageAsset)),
                                             ),
                                             const Spacer(),
                                           ],
@@ -538,7 +545,11 @@ class HomeScreen extends StatelessWidget {
                                                           WidgetStatePropertyAll(
                                                               Colors.white),
                                                     ),
-                                                    onPressed: () {},
+                                                    onPressed: () {
+                                                      Get.to(() =>
+                                                          NewsScreenDetail(
+                                                              news: berita));
+                                                    },
                                                     child: Text(
                                                       'Read Now!',
                                                       style: GoogleFonts
@@ -604,7 +615,15 @@ class HomeScreen extends StatelessWidget {
                         child: Card(
                           child: Stack(
                             children: [
-                              Image(image: AssetImage(berita.imageAsset)),
+                              Container(
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: AssetImage(berita.imageAsset),
+                                        fit: BoxFit.cover),
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(12))),
+                                width: double.infinity,
+                              ),
                               Container(
                                 decoration: const BoxDecoration(
                                     borderRadius:
@@ -625,7 +644,8 @@ class HomeScreen extends StatelessWidget {
                                       width: 60,
                                       height: 60,
                                       child: Image(
-                                          image: AssetImage(berita.imageAsset)),
+                                          image: AssetImage(
+                                              berita.logoImageAsset)),
                                     ),
                                     // Text
                                     Padding(
@@ -722,7 +742,12 @@ class HomeScreen extends StatelessWidget {
                                                           WidgetStatePropertyAll(
                                                               Colors.white),
                                                     ),
-                                                    onPressed: () {},
+                                                    onPressed: () {
+                                                      Get.to(() =>
+                                                          NewsScreenDetail(
+                                                            news: berita,
+                                                          ));
+                                                    },
                                                     child: Text(
                                                       'Read Now!',
                                                       style: GoogleFonts

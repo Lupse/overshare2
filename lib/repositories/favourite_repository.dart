@@ -38,6 +38,9 @@ class FavouriteRepository extends GetxController {
       'url': news.url,
       'description': news.description,
       'imageAsset': news.imageAsset,
+      'logoImageAsset' : news.logoImageAsset,
+      'author' : news.logoImageAsset,
+      'date' : news.date,
       'initialized': true
     });
   }
