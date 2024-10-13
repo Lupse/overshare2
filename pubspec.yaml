@@ -17,6 +17,7 @@ dependencies:
   google_fonts: ^6.2.1
   intl_phone_number_input: ^0.7.4
   stop_watch_timer: ^3.2.1
+  url_launcher: ^6.3.1
 
 dev_dependencies:
   flutter_test:
@@ -42,4 +43,6 @@ flutter:
     - "assets/props/success_snapbar.png"
     - "assets/props/error_snapbar.png"
     - "assets/props/error.png"
-    - "assets/news/"
+    - "assets/news/background/"
+    - "assets/news/logo/"
+
