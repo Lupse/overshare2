@@ -170,96 +170,97 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
                 ),
 
                 // Button
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisAlignment: MainAxisAlignment.center,
+                SizedBox(
+                  width: 275,
+                  child: Stack(
+                    alignment: AlignmentDirectional.bottomCenter,
                     children: [
                       // Left Button
-                      show
-                          ? SizedBox(
-                              width: 61,
-                              height: 61,
-                              child: IconButton(
-                                style: const ButtonStyle(
-                                    backgroundColor: WidgetStatePropertyAll(
-                                  Color(0xff303030),
-                                )),
-                                onPressed: () {
-                                  reset();
-                                },
-                                icon: const Icon(
-                                  Icons.restart_alt_sharp,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            )
-                          : const SizedBox(
-                              width: 61,
-                              height: 61,
-                            ),
-
-                      // Mid Button
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            left: 12.0, right: 12, top: 22),
+                      AnimatedPositioned(
+                        duration: const Duration(milliseconds: 300),
+                        bottom: show ? 0 : 10,
+                        left: show ? 25 : 275 / 2.5,
                         child: SizedBox(
-                          width: 92,
-                          height: 92,
+                          width: 61,
+                          height: 61,
                           child: IconButton(
                             style: const ButtonStyle(
-                                backgroundColor:
-                                    WidgetStatePropertyAll(Color(0xffF07A00))),
+                                backgroundColor: WidgetStatePropertyAll(
+                              Color(0xff303030),
+                            )),
                             onPressed: () {
-                              setState(() {
-                                if (started == 0) {
-                                  start();
-                                } else {
-                                  stop();
-                                }
-                              });
+                              reset();
                             },
-                            icon: started == 1
-                                ? const Icon(
-                                    Icons.pause,
-                                    color: Colors.white,
-                                    size: 60,
-                                  )
-                                : const Icon(
-                                    Icons.play_arrow,
-                                    color: Colors.white,
-                                    size: 60,
-                                  ),
+                            icon: const Icon(
+                              Icons.restart_alt_sharp,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),
 
                       // Right Button
-                      show
-                          ? SizedBox(
-                              width: 61,
-                              height: 61,
-                              child: IconButton(
-                                style: const ButtonStyle(
-                                    backgroundColor: WidgetStatePropertyAll(
-                                        Color(0xFF303030))),
-                                onPressed: () {
-                                  // Call the lap method to save the lap
-                                  if (started == 1 || started == 2) {
-                                    lap(); // Save lap time if running
-                                  }
-                                },
-                                icon: const Icon(
-                                  Icons.timer,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            )
-                          : const SizedBox(
-                              width: 61,
-                              height: 61,
+                      AnimatedPositioned(
+                        duration: const Duration(milliseconds: 300),
+                        bottom: show ? 0 : 10,
+                        right: show ? 25 : 275 / 2.5,
+                        child: SizedBox(
+                          width: 61,
+                          height: 61,
+                          child: IconButton(
+                            style: const ButtonStyle(
+                                backgroundColor:
+                                    WidgetStatePropertyAll(Color(0xFF303030))),
+                            onPressed: () {
+                              // Call the lap method to save the lap
+                              if (started == 1 || started == 2) {
+                                lap(); // Save lap time if running
+                              }
+                            },
+                            icon: const Icon(
+                              Icons.timer,
+                              color: Colors.white,
                             ),
+                          ),
+                        ),
+                      ),
+
+                      // Mid Button
+                      Positioned(
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              left: 12.0, right: 12, top: 22),
+                          child: SizedBox(
+                            width: 92,
+                            height: 92,
+                            child: IconButton(
+                              style: const ButtonStyle(
+                                  backgroundColor: WidgetStatePropertyAll(
+                                      Color(0xffF07A00))),
+                              onPressed: () {
+                                setState(() {
+                                  if (started == 0) {
+                                    start();
+                                  } else {
+                                    stop();
+                                  }
+                                });
+                              },
+                              icon: started == 1
+                                  ? const Icon(
+                                      Icons.pause,
+                                      color: Colors.white,
+                                      size: 60,
+                                    )
+                                  : const Icon(
+                                      Icons.play_arrow,
+                                      color: Colors.white,
+                                      size: 60,
+                                    ),
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
