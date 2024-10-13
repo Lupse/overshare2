@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:overshare2/features/news/models/news_list.dart';
 import 'package:overshare2/repositories/authentication/authentication_repository.dart';
 import 'package:overshare2/repositories/favourite_repository.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class FavouriteController extends GetxController {
   final FavouriteRepository favouriteRepository = Get.find();
@@ -62,4 +63,14 @@ class FavouriteController extends GetxController {
   // bool checkFavourite(News news) {
   //   return toggleFavourite.contains(news);
   // }
+
+  //lunch url
+  Future<void> launchUrl(String url) async {
+    Uri uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(url);
+    } else {
+      throw "Could't lunch url!";
+    }
+  }
 }

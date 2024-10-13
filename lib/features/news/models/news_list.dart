@@ -4,6 +4,9 @@ class News {
   String url;
   String description;
   String imageAsset;
+  String logoImageAsset;
+  String author;
+  String date;
 
   News({
     required this.id,
@@ -11,16 +14,23 @@ class News {
     required this.url,
     required this.description,
     required this.imageAsset,
+    required this.logoImageAsset,
+    required this.author,
+    required this.date,
   });
 
 //method factory untuk bikin object baru dari firebase yang di fetch
   factory News.fromFirestore(Map<String, dynamic> data, String documentId) {
     return News(
-        id: documentId,
-        name: data['name'] ?? 'Name not found!',
-        url: data['url'] ?? 'Url not found!',
-        description: data['description'] ?? 'Description not found!',
-        imageAsset: data['imageAsset'] ?? 'Image not found!');
+      id: documentId,
+      name: data['name'] ?? 'Name not found!',
+      url: data['url'] ?? 'Url not found!',
+      description: data['description'] ?? 'Description not found!',
+      imageAsset: data['imageAsset'] ?? 'Image not found!',
+      logoImageAsset: data['logoImageAsset'] ?? 'Logo not found!',
+      author: data['author'] ?? 'Author not found!',
+      date: data['date'] ?? 'Date not found!',
+    );
   }
 }
 
@@ -31,81 +41,120 @@ var newsList = [
     name: 'The Future of Cloud Computing 2025-2030: Trends and Predictions',
     url: 'https://www.clouddefense.ai/future-of-cloud-computing/',
     description:
-        '''Almost every modern organization is shifting to digital infrastructure and opting for a cloud workspace due to its fast workflow, better business management, and impressive return.
-          Cloud computing serves as the key driver behind the digital transformation in today’s businesses and helps businesses to operate with better scalability, operation, and collaboration. 
-          With the increase in digitization in business operations and heavy reliance on data analysis, are you speculating what the future holds? ''',
-    imageAsset: 'assets/news/cloud_computing.png',
+        '''Almost every modern organization is shifting to digital infrastructure and opting for a cloud workspace due to its fast workflow, better business management, and impressive return.''',
+    imageAsset: 'assets/news/background/cloud_background.png',
+    logoImageAsset:
+        'assets/news/logo/cloud_computing.png', // Path to the logo image
+    author: 'Hilda Wayne', // Author's name
+    date: 'October 13, 2024', // Date as string
   ),
   News(
     id: '2',
     name: 'Where are we in the AI revolution? Robert Jack Will',
-    url: 'https://medium.com/@willitheowl/where-we-are-in-the-ai-revolution-fe448c4006da',
+    url:
+        'https://medium.com/@willitheowl/where-we-are-in-the-ai-revolution-fe448c4006da',
     description:
-        '''ChatGPT was a wake-up call for society because everyone could experience what seemed like a big step on silicon’s long road from pocket calculators to taking over the world. Indeed, it is the culmination of decades of work on processing natural language with computers.''',
-    imageAsset: 'assets/ai_revolution.png',
+        '''ChatGPT was a wake-up call for society because everyone could experience what seemed like a big step on silicon’s long road from pocket calculators to taking over the world.''',
+    imageAsset: 'assets/news/background/ai_background.jpg',
+    logoImageAsset: 'assets/news/logo/ai.png',
+    author: 'Robert Jack Will',
+    date: 'September 20, 2024',
   ),
   News(
     id: '3',
-    name: 'Cybersecurity in 2024: Top Challenges',
-    url: 'https://example.com/cybersecurity-2024',
+    name: 'Biggest Cyber Security Challenges in 2024',
+    url:
+        'https://www.checkpoint.com/cyber-hub/cyber-security/what-is-cybersecurity/biggest-cyber-security-challenges-in-2024/',
     description:
-        'This article delves into the biggest cybersecurity challenges facing businesses in 2024.',
-    imageAsset: 'assets/cybersecurity.png',
+        '''2023 saw a rapidly evolving cybersecurity threat landscape. Cyberattacks are on the rise, existing attacks are changing, and new, more sophisticated threats are on the horizon.''',
+    imageAsset: 'assets/news/background/cyber_security_background.jpg',
+    logoImageAsset: 'assets/news/logo/cyber_security.png',
+    author: 'Jane Smith',
+    date: 'January 10, 2024',
   ),
   News(
     id: '4',
-    name: 'Quantum Computing: A Game Changer for IT',
-    url: 'https://example.com/quantum-computing-it',
-    description: 'Quantum computing promises to revolutionize the IT industry.',
-    imageAsset: 'assets/quantum_computing.png',
+    name:
+        'Quantum Computing: A Game-Changer for the Information Technology Industry',
+    url:
+        'https://www.veridicsolutions.com/insights/quantum-computing-a-game-changer-for-the-information-technology-industry',
+    description:
+        '''In recent years, quantum computing has emerged as one of the most exciting and promising areas of research in the field of information technology.''',
+    imageAsset: 'assets/news/background/quantum_background.jpg',
+    logoImageAsset: 'assets/news/logo/quantum.png',
+    author: 'Alice Johnson',
+    date: 'December 5, 2023',
   ),
   News(
     id: '5',
-    name: 'DevOps Best Practices for 2024',
-    url: 'https://example.com/devops-best-practices-2024',
+    name: '16 DevOps Best Practices Every Developer Should Know',
+    url: 'https://spacelift.io/blog/devops-best-practices',
     description:
-        'This article outlines the best DevOps practices for 2024, focusing on CI/CD and automation.',
-    imageAsset: 'assets/devops_best_practices.png',
+        '''Utilizing DevOps practices to maximize speed and value creation has been a hot topic in the software industry for the past decade.''',
+    imageAsset: 'assets/news/background/devops_background.png',
+    logoImageAsset: 'assets/news/logo/devops.png',
+    author: 'Michael Green',
+    date: 'November 15, 2023',
   ),
-  // New entries
   News(
     id: '6',
-    name: 'Blockchain Beyond Cryptocurrency: The IT Impact',
-    url: 'https://example.com/blockchain-it-impact',
+    name:
+        'Blockchain Beyond Cryptocurrency: Exploring Its Impact on Modern Business Operations',
+    url: 'https://cioviews.com/blockchain-beyond-cryptocurrency/',
     description:
-        'This article explores the ways in which blockchain is improving security and transparency.',
-    imageAsset: 'assets/blockchain.png',
+        '''Blockchain technology, often associated with cryptocurrencies, extends far beyond digital currencies.''',
+    imageAsset: 'assets/news/background/blockchain_background.jpg',
+    logoImageAsset: 'assets/news/logo/blockchain.png',
+    author: 'Sarah Lee',
+    date: 'May 8, 2024',
   ),
   News(
     id: '7',
-    name: 'The Role of 5G in Revolutionizing IT Infrastructure',
-    url: 'https://example.com/5g-it-infrastructure',
+    name:
+        'Unleashing the Power: How 5G Technology is Revolutionizing Industries',
+    url:
+        'https://media.inti.asia/read/unleashing-the-power-how-5g-technology-is-revolutionizing-industries',
     description:
-        '5G technology is set to revolutionize IT infrastructure by enabling faster data transmission.',
-    imageAsset: 'assets/5g.png',
+        '''5G is poised to revolutionize various sectors, unlocking new opportunities and powering unprecedented advancements.''',
+    imageAsset: 'assets/news/background/5g_background.jpg',
+    logoImageAsset: 'assets/news/logo/5g.png',
+    author: 'Chris Williams',
+    date: 'June 14, 2024',
   ),
   News(
     id: '8',
-    name: 'Remote Work Technology: Adapting IT for the Future',
-    url: 'https://example.com/remote-work-it',
+    name: 'The Future of Work: Embracing Remote Work Technology',
+    url:
+        'https://customerthink.com/the-future-of-work-embracing-remote-work-technology/',
     description:
-        'IT teams are adapting to provide secure and scalable solutions for remote work environments.',
-    imageAsset: 'assets/remote_work.png',
+        '''The dynamic nature of work has been significantly shifted due to advancements in technology.''',
+    imageAsset: 'assets/news/background/future_background.jpg',
+    logoImageAsset: 'assets/news/logo/future.png',
+    author: 'David Zhang',
+    date: 'July 1, 2024',
   ),
   News(
     id: '9',
-    name: 'The Rise of Low-Code Platforms in IT Development',
-    url: 'https://example.com/low-code-it-development',
+    name: 'The Total Economic Impact™ (TEI) of OutSystems',
+    url: 'https://www.outsystems.com/1/low-code-roi-tei/',
     description:
-        'Low-code platforms are allowing non-developers to create apps and automate workflows.',
-    imageAsset: 'assets/low_code.png',
+        '''Many organizations are using low-code development platforms to transform and accelerate their software delivery strategies.''',
+    imageAsset: 'assets/news/background/outsystem_background.png',
+    logoImageAsset: 'assets/news/logo/outsystem.png',
+    author: 'Paul Baker',
+    date: 'March 22, 2024',
   ),
   News(
     id: '10',
-    name: 'Sustainability in IT: How Green Tech is Shaping the Future',
-    url: 'https://example.com/green-tech-it',
+    name:
+        'Sustainability in Tech: How Green Practices are Shaping the Industry',
+    url:
+        'https://www.ironhack.com/gb/blog/sustainability-in-tech-how-green-practices-are-shaping-the-industry-in-2024',
     description:
-        'Green technology is becoming a critical component of modern IT strategies to reduce carbon footprint.',
-    imageAsset: 'assets/green_tech.png',
+        '''Without a doubt, one of the biggest trends in tech in 2024 is sustainability.''',
+    imageAsset: 'assets/news/background/ironhack_background.jpg',
+    logoImageAsset: 'assets/news/logo/ironhack.png',
+    author: 'Emma Watson',
+    date: 'August 18, 2024',
   ),
 ];
