@@ -1,85 +1,120 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:overshare2/features/news/controllers/favourite_controller.dart';
-import 'package:overshare2/features/news/models/news_list.dart';
-import 'package:overshare2/features/news/screens/news_screen_detail.dart';
+import 'package:overshare2/properties/appbars.dart';
+import 'package:overshare2/properties/button.dart';
 
 class NewsScreen extends StatelessWidget {
-  NewsScreen({super.key});
-
-  // indikator favorit
-  final FavouriteController favouriteController = Get.find();
+  const NewsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          "What's new?",
-          style: GoogleFonts.josefinSans(fontSize: 36, color: Colors.white),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: GridView.builder(
-            shrinkWrap: true,
-            itemCount: newsList.length,
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, childAspectRatio: 0.7),
-            itemBuilder: (context, index) {
-              //ngambil list dummy data
-              final News news = newsList[index];
-              //card nya
-              return Card(
-                  margin: const EdgeInsets.all(8.0),
-                  child: InkWell(
-                    onTap: () {
-                      Get.to(NewsScreenDetail(news: news));
-                    },
-                    child: Card(
-                      child: Column(
-                        children: [
-                          SizedBox(
-                              width: double.infinity,
-                              height: 150,
-                              child: Image(image: AssetImage(news.imageAsset))),
-                          Text(
-                            news.name,
-                            style: const TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
-                          ),
+    var screenWidth = MediaQuery.of(context).size.width;
 
-                          
-                          // Favorite Button
-                          Obx(() =>
-                              // favouriteController.isFavourited.value =
-                              //     snapshot.data!;
-                              IconButton(
-                                onPressed: () {
-                                  if (favouriteController.isFavourite(news)) {
-                                    favouriteController.removeFavourite(news);
-                                  } else {
-                                    favouriteController.addFavourite(news);
-                                  }
-                                },
-                                icon: favouriteController.isFavourite(news)
-                                    ? const Icon(
-                                        Icons.favorite,
-                                        color: Color.fromARGB(255, 243, 29, 29),
-                                      )
-                                    : const Icon(
-                                        Icons.favorite_border_outlined,
-                                        color: Color.fromARGB(98, 0, 0, 0),
-                                      ),
-                              ))
-                        ],
-                      ),
-                    ),
-                  ));
-            },
+    return Scaffold(
+      backgroundColor: const Color(0xFF151515),
+      appBar: const PreferredSize(
+          preferredSize: Size(double.infinity, 60),
+          child: MyAppBar(
+            withLeading: true,
+            backgroundColor: Color(0xFF151515),
+            leading: true,
+          )),
+      body: Column(
+        children: [
+          // Header (Image & Logo)
+          Stack(
+            children: [
+              // Background Image
+              const SizedBox(
+                  width: double.infinity,
+                  height: 180,
+                  child: Image(image: AssetImage('assets/login/asset1.png'))),
+
+              // Background Color Layer
+              Container(
+                height: 200,
+                decoration: const BoxDecoration(
+                    gradient: LinearGradient(colors: [
+                  Color.fromARGB(30, 21, 21, 21),
+                  Color.fromARGB(210, 21, 21, 21),
+                  Color(0xFF151515),
+                ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+              ),
+
+              // Logo
+              Positioned(
+                left: 0.4 * screenWidth,
+                bottom: 0,
+                child: const SizedBox(
+                    width: 80,
+                    height: 80,
+                    child: Image(image: AssetImage('assets/minilogo.png'))),
+              )
+            ],
           ),
-        ),
-      ],
+
+          // Title
+          Padding(
+            padding: const EdgeInsets.only(top: 14.0, left: 12, right: 12),
+            child: Text(
+              'Meledaknya twin tower oleh islam pada 9/11 ',
+              textAlign: TextAlign.center,
+              style: GoogleFonts.josefinSans(
+                  fontSize: 24,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+
+          // Date
+          Padding(
+            padding: const EdgeInsets.only(left: 12, right: 12),
+            child: Text(
+              '9/11 Dhuarr islam mengebom segalanya',
+              textAlign: TextAlign.center,
+              style: GoogleFonts.josefinSans(
+                  fontSize: 14,
+                  color: const Color.fromARGB(85, 255, 255, 255),
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+
+          // Writer
+          Padding(
+            padding: const EdgeInsets.only(left: 12, right: 12),
+            child: Text(
+              'Ditulis oleh OperatorLupsehh',
+              textAlign: TextAlign.center,
+              style: GoogleFonts.josefinSans(
+                  fontSize: 14,
+                  color: const Color.fromARGB(85, 255, 255, 255),
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+
+          // Descriptiion
+          Padding(
+            padding: const EdgeInsets.only(top: 42.0, left: 12, right: 12),
+            child: Text(
+              'Serangan 11 September 2001 (9/11) adalah aksi terorisme paling mematikan dalam sejarah AS, ketika 19 anggota al-Qaeda membajak empat pesawat dan menabrakkan dua di antaranya ke Menara Kembar World Trade Center di New York, satu ke Pentagon, dan satu lagi jatuh di Pennsylvania setelah penumpang melawan pembajak. Peristiwa ini menewaskan hampir 3.000 orang dan memicu "Perang Melawan Teror" yang mencakup invasi AS ke Afghanistan untuk menggulingkan Taliban. Serangan 9/11 membawa perubahan besar dalam kebijakan keamanan global dan berdampak luas dalam politik dan kebijakan luar negeri AS.',
+              textAlign: TextAlign.justify,
+              style: GoogleFonts.josefinSans(
+                  fontSize: 14,
+                  color: const Color.fromARGB(255, 255, 255, 255),
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+
+          // Button
+          Padding(
+            padding: const EdgeInsets.only(top: 42.0),
+            child: SizedBox(
+                width: 300,
+                height: 40,
+                child: MyButton(text: 'Read More', onPressed: () {})),
+          )
+        ],
+      ),
     );
   }
 }

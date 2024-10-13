@@ -381,7 +381,10 @@ class HomeScreen extends StatelessWidget {
                       );
                     } else if (favouriteController.favouritedNews.isEmpty) {
                       return const Center(
-                        child: Text("No favourited news yet!"),
+                        child: Text(
+                          "No favorited news yet!",
+                          style: TextStyle(color: Colors.white),
+                        ),
                       );
                     } else {
                       return ListView.builder(
@@ -406,7 +409,7 @@ class HomeScreen extends StatelessWidget {
                                               Radius.circular(12)),
                                           gradient: LinearGradient(
                                               colors: [
-                                                Colors.transparent,
+                                                Color.fromARGB(98, 0, 0, 0),
                                                 Color(0xff2B2828),
                                                 Color(0xff2B2828)
                                               ],
@@ -421,47 +424,36 @@ class HomeScreen extends StatelessWidget {
                                         Row(
                                           children: [
                                             const Spacer(),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Obx(() {
-                                                return IconButton(
-                                                    onPressed: () {
-                                                      if (favouriteController
-                                                          .isFavourite(
-                                                              berita)) {
-                                                        favouriteController
-                                                            .removeFavourite(
-                                                                berita);
-                                                      } else {
-                                                        favouriteController
-                                                            .addFavourite(
-                                                                berita);
-                                                      }
-                                                    },
-                                                    icon: favouriteController
-                                                            .isFavourite(berita)
-                                                        ? const Icon(
-                                                            Icons.favorite,
-                                                            color:
-                                                                Color.fromARGB(
-                                                                    255,
-                                                                    243,
-                                                                    29,
-                                                                    29),
-                                                          )
-                                                        : const Icon(
-                                                            Icons
-                                                                .favorite_border_outlined,
-                                                            color:
-                                                                Color.fromARGB(
-                                                                    97,
-                                                                    255,
-                                                                    255,
-                                                                    255),
-                                                          ));
-                                              }),
-                                            ),
+                                            Obx(() {
+                                              return IconButton(
+                                                  onPressed: () {
+                                                    if (favouriteController
+                                                        .isFavourite(berita)) {
+                                                      favouriteController
+                                                          .removeFavourite(
+                                                              berita);
+                                                    } else {
+                                                      favouriteController
+                                                          .addFavourite(berita);
+                                                    }
+                                                  },
+                                                  icon: favouriteController
+                                                          .isFavourite(berita)
+                                                      ? const Icon(
+                                                          Icons.favorite,
+                                                          color: Color.fromARGB(
+                                                              255, 243, 29, 29),
+                                                        )
+                                                      : const Icon(
+                                                          Icons
+                                                              .favorite_border_outlined,
+                                                          color: Color.fromARGB(
+                                                              97,
+                                                              255,
+                                                              255,
+                                                              255),
+                                                        ));
+                                            }),
                                           ],
                                         ),
 
