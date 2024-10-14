@@ -46,6 +46,7 @@ class AuthenticationRepository extends GetxController {
           : Get.to(() => const LandingPage());
     } on FirebaseAuthException catch (e) {
       final ex = AuthException.code(e.code);
+      // print('FIREBASE AUTH EXCEPTION $e');
       // print('FIREBASE AUTH EXCEPTION - ${ex.message}');
 
       //showing snackbar using getx dependency

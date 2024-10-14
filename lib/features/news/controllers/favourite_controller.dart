@@ -65,12 +65,12 @@ class FavouriteController extends GetxController {
   // }
 
   //lunch url
-  Future<void> launchUrl(String url) async {
+  Future<void> myLaunchUrl(String url) async {
     Uri uri = Uri.parse(url);
     if (await canLaunchUrl(uri)) {
-      await launchUrl(url);
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
     } else {
-      throw "Could't lunch url!";
+      throw "Could't launch $url!";
     }
   }
 }
