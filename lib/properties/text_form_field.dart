@@ -8,6 +8,9 @@ class MyTextFormField extends StatefulWidget {
   final FormFieldValidator<String>? validator;
   final FocusNode? focusNode;
   final String? initialValue;
+  final int? maxLength;
+  final bool? enableInteractiveSelection;
+  final TextInputType? keyboardType;
   const MyTextFormField({
     super.key,
     required this.text,
@@ -16,6 +19,9 @@ class MyTextFormField extends StatefulWidget {
     this.validator,
     this.focusNode,
     this.initialValue,
+    this.maxLength,
+    this.enableInteractiveSelection,
+    this.keyboardType,
   });
 
   @override
@@ -31,6 +37,9 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
       width: 388,
       height: 61,
       child: TextFormField(
+          keyboardType: widget.keyboardType,
+          enableInteractiveSelection: widget.enableInteractiveSelection,
+          maxLength: widget.maxLength,
           initialValue: widget.initialValue,
           focusNode: widget.focusNode,
           validator: widget.validator,

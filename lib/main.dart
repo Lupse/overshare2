@@ -42,7 +42,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const GetMaterialApp(
-      debugShowCheckedModeBanner: true,
+      debugShowCheckedModeBanner: false,
       // initialRoute: '/',
       // routes: {'/': (context) => NewsScreen()},
       home: Center(child: CircularProgressIndicator()),

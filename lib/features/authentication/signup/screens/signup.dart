@@ -102,6 +102,7 @@ class Signup extends StatelessWidget {
                               width: 388,
                               height: 61,
                               child: MyTextFormField(
+                                keyboardType: TextInputType.emailAddress,
                                 focusNode:
                                     signUpControllerInstance.emailFocusNode,
                                 validator: (value) {
@@ -148,6 +149,7 @@ class Signup extends StatelessWidget {
                               width: 388,
                               height: 61,
                               child: MyTextFormField(
+                                enableInteractiveSelection: false,
                                 focusNode:
                                     signUpControllerInstance.passwordFocusNode,
                                 validator: (value) {
@@ -170,6 +172,7 @@ class Signup extends StatelessWidget {
                               width: 388,
                               height: 61,
                               child: MyTextFormField(
+                                enableInteractiveSelection: false,
                                 focusNode: signUpControllerInstance
                                     .confirmPasswordFocusNode,
                                 validator: (value) {

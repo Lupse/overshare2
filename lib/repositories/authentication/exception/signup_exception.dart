@@ -26,6 +26,9 @@ class AuthException {
         return const AuthException(
             'Oops, Please Insert Email & Password Correctly!');
 
+      case 'network-request-failed':
+        return const AuthException('Please Check Your Network and Try Again!');
+
       default:
         return const AuthException();
     }

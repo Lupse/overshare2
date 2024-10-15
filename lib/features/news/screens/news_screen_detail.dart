@@ -124,7 +124,7 @@ class NewsScreenDetail extends StatelessWidget {
                   child: MyButton(
                       text: 'Read More',
                       onPressed: () =>
-                          favouriteController.launchUrl(news.url))),
+                          favouriteController.myLaunchUrl(news.url))),
             )
           ],
         ),

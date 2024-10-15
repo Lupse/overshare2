@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:overshare2/features/authentication/signup/screens/signup_success.dart';
+import 'package:overshare2/features/stopwatch/controllers/stopwatch_controller.dart';
 import 'package:overshare2/properties/snackbar.dart';
 import 'package:overshare2/repositories/authentication/exception/signup_exception.dart';
 import 'package:overshare2/views/homepage/landing.dart';
@@ -10,6 +11,7 @@ import 'package:overshare2/views/landing_page.dart';
 class AuthenticationRepository extends GetxController {
   static AuthenticationRepository get instance => Get.find();
   final Snackbar snackbar = Get.find();
+  final stopwatchController = Get.put(StopwatchController(), permanent: true);
 
   // variables
   final _auth = FirebaseAuth.instance;
@@ -19,6 +21,7 @@ class AuthenticationRepository extends GetxController {
 
   @override
   void onReady() {
+    stopwatchController.reset();
     Future.delayed(const Duration(seconds: 1));
     firebaseUser = Rx<User?>(_auth.currentUser);
     firebaseUser.bindStream(_auth.userChanges());
@@ -46,6 +49,7 @@ class AuthenticationRepository extends GetxController {
           : Get.to(() => const LandingPage());
     } on FirebaseAuthException catch (e) {
       final ex = AuthException.code(e.code);
+      // print('FIREBASE AUTH EXCEPTION $e');
       // print('FIREBASE AUTH EXCEPTION - ${ex.message}');
 
       //showing snackbar using getx dependency
@@ -96,7 +100,7 @@ class AuthenticationRepository extends GetxController {
           content: snackbar.successSnackbar("Success", "Login Success"),
           duration: const Duration(seconds: 2),
         ));
-        Get.offAll(const Homepage());
+        Get.offAll(() => const Homepage());
       }
     } on FirebaseAuthException catch (e) {
       final ex = AuthException.code(e.code);
@@ -135,5 +139,9 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
-  Future<void> logoutUser() async => await _auth.signOut();
+  Future<void> logoutUser() async {
+    stopwatchController.reset();
+    Get.delete<StopwatchController>();
+    await _auth.signOut();
+  }
 }

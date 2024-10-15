@@ -41,12 +41,12 @@ var newsList = [
     name: 'The Future of Cloud Computing 2025-2030: Trends and Predictions',
     url: 'https://www.clouddefense.ai/future-of-cloud-computing/',
     description:
-        '''Almost every modern organization is shifting to digital infrastructure and opting for a cloud workspace due to its fast workflow, better business management, and impressive return.''',
+        '''Almost every modern organization is shifting to digital infrastructure and opting for a cloud workspace due to its fast workflow, better business management, and impressive return. Cloud computing serves as the key driver behind the digital transformation in today’s businesses and helps businesses to operate with better scalability, operation, and collaboration. ''',
     imageAsset: 'assets/news/background/cloud_background.png',
     logoImageAsset:
         'assets/news/logo/cloud_computing.png', // Path to the logo image
-    author: 'Hilda Wayne', // Author's name
-    date: 'October 13, 2024', // Date as string
+    author: 'Abhishek Arora', // Author's name
+    date: 'October 13, 2023', // Date as string
   ),
   News(
     id: '2',
@@ -54,11 +54,11 @@ var newsList = [
     url:
         'https://medium.com/@willitheowl/where-we-are-in-the-ai-revolution-fe448c4006da',
     description:
-        '''ChatGPT was a wake-up call for society because everyone could experience what seemed like a big step on silicon’s long road from pocket calculators to taking over the world.''',
+        '''ChatGPT was a wake-up call for society because everyone could experience what seemed like a big step on silicon’s long road from pocket calculators to taking over the world. An area that made slow, but steady progress for the first few decades (1950s to 1980s), and from then on started producing results that made it into usable products, including slowly improving text to speech, speech to text, and hand-writing recognition. ''',
     imageAsset: 'assets/news/background/ai_background.jpg',
     logoImageAsset: 'assets/news/logo/ai.png',
     author: 'Robert Jack Will',
-    date: 'September 20, 2024',
+    date: 'August 10, 2024',
   ),
   News(
     id: '3',
@@ -66,7 +66,7 @@ var newsList = [
     url:
         'https://www.checkpoint.com/cyber-hub/cyber-security/what-is-cybersecurity/biggest-cyber-security-challenges-in-2024/',
     description:
-        '''2023 saw a rapidly evolving cybersecurity threat landscape. Cyberattacks are on the rise, existing attacks are changing, and new, more sophisticated threats are on the horizon.''',
+        '''2023 saw a rapidly evolving cybersecurity threat landscape. Cyberattacks are on the rise, existing attacks are changing, and new, more sophisticated threats are on the horizon. these trends are likely to continue or — more likely — accelerate. As artificial intelligence (AI) matures, it promises to significantly impact how both cyber attackers and defenders do their jobs.''',
     imageAsset: 'assets/news/background/cyber_security_background.jpg',
     logoImageAsset: 'assets/news/logo/cyber_security.png',
     author: 'Jane Smith',

@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:overshare2/features/authentication/signup/controllers/phone_number_controller.dart';
 import 'package:overshare2/features/authentication/signup/controllers/signup_controller.dart';
 import 'package:overshare2/features/authentication/signup/models/signup_model.dart';
+import 'package:overshare2/properties/snackbar.dart';
 import 'package:overshare2/views/homepage/landing.dart';
 
 class SignupSuccess extends StatefulWidget {
@@ -15,6 +16,7 @@ class SignupSuccess extends StatefulWidget {
 }
 
 class SignupSuccessState extends State<SignupSuccess> {
+  final Snackbar snackbar = Get.find();
   final signUpControllerInstance = Get.find<SignupController>();
   final phoneNumberControllerInstance = Get.find<PhoneNumberController>();
   int _counter = 3;
@@ -40,7 +42,17 @@ class SignupSuccessState extends State<SignupSuccess> {
             email: signUpControllerInstance.emailController.text.trim(),
             password: signUpControllerInstance.passwordController.text.trim());
         signUpControllerInstance.signupUserData(user);
-        Get.offAll(() => const Homepage());
+        if (Get.isSnackbarOpen == false) {
+          ScaffoldMessenger.of(Get.overlayContext!).showSnackBar(SnackBar(
+            clipBehavior: Clip.none,
+            padding: const EdgeInsets.all(0),
+            behavior: SnackBarBehavior.floating,
+            backgroundColor: Colors.transparent,
+            content: snackbar.successSnackbar('Success', 'Login Success'),
+            duration: const Duration(seconds: 3),
+          ));
+          Get.offAll(() => const Homepage());
+        }
       }
     });
   }
