@@ -20,7 +20,8 @@ class StopwatchController extends GetxController with WidgetsBindingObserver {
     bool wasRunning = sharedPreferences.getBool('timerStarted') ?? false;
 
     if (savedTime > 0) {
-      stopWatchTimer.setPresetTime(mSec: savedTime);
+      stopWatchTimer.setPresetTime(
+          mSec: (savedTime - stopWatchTimer.rawTime.value));
       time.value = savedTime ~/ 1000;
       show.value = true;
       if (wasRunning) {
