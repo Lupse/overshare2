@@ -91,6 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                           constraints: const BoxConstraints(
                               maxWidth: 388, maxHeight: 61),
                           child: MyTextFormField(
+                            keyboardType: TextInputType.emailAddress,
                             focusNode: loginController.emailFocusNode,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
@@ -115,6 +116,7 @@ class _LoginPageState extends State<LoginPage> {
                             constraints: const BoxConstraints(
                                 maxWidth: 388, maxHeight: 61),
                             child: MyTextFormField(
+                              enableInteractiveSelection: false,
                               focusNode: loginController.passwordFocusNode,
                               validator: (value) {
                                 if (value == null || value.isEmpty) {

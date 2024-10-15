@@ -331,7 +331,7 @@ class HomeScreen extends StatelessWidget {
                                 backgroundColor:
                                     WidgetStatePropertyAll(Color(0xFFF76D00))),
                             onPressed: () {
-                              Get.to(const StopwatchScreen());
+                              Get.to(() => StopwatchScreen());
                             },
                             child: Text(
                               'Try it now!',
