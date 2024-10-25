@@ -21,22 +21,22 @@ class _OddevenScreenState extends State<OddevenScreen> {
       angka = int.tryParse(input.text) ?? 0;
       if (angka > 0) {
         if (angka % 2 == 0) {
-          odd = true;
-          even = false;
+          odd = false;
+          even = true;
           text = '';
         } else {
-          even = true;
-          odd = false;
+          even = false;
+          odd = true;
           text = '';
         }
       } else if (angka < 0) {
         if (angka % -2 == 0) {
-          odd = true;
-          even = false;
+          odd = false;
+          even = true;
           text = '';
         } else {
-          even = true;
-          odd = false;
+          even = false;
+          odd = true;
           text = '';
         }
       } else {
